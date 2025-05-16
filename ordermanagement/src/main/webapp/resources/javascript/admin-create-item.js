@@ -1,0 +1,44 @@
+document.addEventListener('DOMContentLoaded', () => {
+	
+	var ingredientCountInput = document.getElementById('ingredientCount')
+	var listGroup = document.getElementById('listGroup')
+	var addBtn = document.getElementById('addBtn')
+	
+	if(ingredientCountInput && listGroup && addBtn) {
+		
+		ingredientCountInput.addEventListener('change', () => {
+			
+			const value = ingredientCountInput.value;
+			
+			if(listGroup.childElementCount) {
+				while(listGroup.childElementCount) {
+					let child = listGroup.firstElementChild;
+					listGroup.removeChild(child)
+				}
+	
+			}
+			
+			for (let i = 0; i < value; i++) {
+				let li = document.createElement('li')
+				let input = document.createElement('input')
+				
+				input.classList.add('form-control')
+				li.classList.add('list-group-item')
+				
+				li.appendChild(input)
+				listGroup.appendChild(li)
+			}
+		})
+		
+		addBtn.addEventListener('click', () => {
+			let li = document.createElement('li')
+			let input = document.createElement('input')
+			
+			input.classList.add('form-control')
+			li.classList.add('list-group-item')
+			
+			li.appendChild(input)
+			listGroup.appendChild(li)			
+		})
+	}
+})

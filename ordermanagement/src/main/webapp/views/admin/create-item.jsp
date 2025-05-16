@@ -67,6 +67,11 @@
 								
 								</ul>
 							</div>
+							<div class="card-footer">
+								<button type="button" class="btn btn-primary" id="addBtn">
+									<i class="bi bi-plus"></i> Add One
+								</button>
+							</div>
 						</div>
 					</div>
 				</div>								
@@ -74,5 +79,5 @@
 		</form>
 	</div>
 	
-	<script src="${root}/resources/javascript/admin/admin-create-item.js"></script>
+	<script src="${root}/resources/javascript/admin-create-item.js"></script>
 </app:admin-layout>
