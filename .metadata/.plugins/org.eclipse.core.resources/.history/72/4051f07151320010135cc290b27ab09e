@@ -1,0 +1,14 @@
+package com.tns.ordermanagement.model.entity;
+
+import org.springframework.data.annotation.Id;
+
+import jakarta.persistence.Entity;
+import lombok.Data;
+
+@Entity
+@Data
+public class Category extends AbstractEntity {
+
+	
+	private int id; 
+}

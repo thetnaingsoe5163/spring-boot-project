@@ -8,4 +8,5 @@ public class OrderItem {
 	private Integer id;
 	private int quantity;
 	private String details;
+	private boolean deleted;
 }

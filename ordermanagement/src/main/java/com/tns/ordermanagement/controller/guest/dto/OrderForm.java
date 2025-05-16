@@ -6,8 +6,6 @@ import lombok.Data;
 
 @Data
 public class OrderForm {
-
-	private Integer formId;
 	
 	private List<OrderItem> items;
 }

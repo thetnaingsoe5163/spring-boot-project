@@ -1,0 +1,28 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="app" tagdir="/WEB-INF/tags" %>
+
+<app:admin-layout>
+	<div class="container">
+		<form class="card mt-4">
+			<div class="card-header">
+				<h4 class="card-title">Create New Item</h4>
+			</div>
+			<div class="card-body">
+				<div class="row">
+					<div class="col-4">
+						Category
+					</div>
+					<div class="col-auto">
+						<select name="" id="" class="form-select">
+							<option value="">Select Category</option>
+							<option value="">Appetizer</option>
+							<option value="">Salads</option>
+							<option value="">Soups</option>
+						</select>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</app:admin-layout>

@@ -1,0 +1,5 @@
+package com.tns.ordermanagement.model.entity;
+
+public class AbstractEntity {
+
+}

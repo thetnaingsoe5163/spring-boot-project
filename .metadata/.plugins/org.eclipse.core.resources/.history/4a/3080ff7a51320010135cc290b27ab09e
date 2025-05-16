@@ -1,0 +1,12 @@
+package com.tns.ordermanagement.model.entity;
+
+import jakarta.persistence.Entity;
+import lombok.Data;
+
+@Entity
+@Data
+public class Category extends AbstractEntity {
+
+	
+	private int id; 
+}

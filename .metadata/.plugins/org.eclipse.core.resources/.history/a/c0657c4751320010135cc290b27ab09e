@@ -1,0 +1,11 @@
+package com.tns.ordermanagement.model.entity;
+
+import java.time.LocalDateTime;
+
+public class AbstractEntity {
+
+	private LocalDateTime createdAt;
+	private String createdBy;
+	private LocalDateTime updatedAt;
+	private String updatedBy;
+}
