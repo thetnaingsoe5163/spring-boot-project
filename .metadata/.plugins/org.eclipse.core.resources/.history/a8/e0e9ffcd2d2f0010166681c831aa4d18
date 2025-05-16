@@ -1,0 +1,4 @@
+spring.application.name=orderManagement
+
+spring.mvc.view.prefix=/views/
+

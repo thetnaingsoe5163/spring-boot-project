@@ -1,0 +1,19 @@
+document.addEventListener('DOMContentLoaded', () => {
+	
+	const menuItems = Array.from(document.getElementsByClassName('card'))
+	
+	if(menuItems) {
+		menuItems.forEach(item => {
+			const engName = item.dataset['englishName']
+			const burName = item.dataset['burmeseName']
+			const img = item.dataset['image']
+			const description = item.dataset['description']
+			
+			console.log(engName)
+			console.log(burName)
+			console.log(img)
+			console.log(description)
+		})
+	}
+	
+})

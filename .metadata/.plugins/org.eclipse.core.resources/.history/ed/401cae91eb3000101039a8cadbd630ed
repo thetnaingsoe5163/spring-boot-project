@@ -1,0 +1,13 @@
+package com.tns.ordermanagement.controller.dto;
+
+import java.util.List;
+
+import lombok.Data;
+
+@Data
+public class OrderForm {
+
+	private Integer formId;
+	
+	private List<OrderItem> items;
+}

@@ -1,0 +1,8 @@
+.fixed-card-size {
+	width: 250px;
+	height: 350px;
+}
+.fixed-img-card-size {
+	width: 100%; 
+	height: ;
+}
