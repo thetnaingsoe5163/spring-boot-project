@@ -1,44 +1,67 @@
 document.addEventListener('DOMContentLoaded', () => {
-	
+
 	var ingredientCountInput = document.getElementById('ingredientCount')
 	var listGroup = document.getElementById('listGroup')
 	var addBtn = document.getElementById('addBtn')
-	
-	if(ingredientCountInput && listGroup && addBtn) {
-		
-		ingredientCountInput.addEventListener('change', () => {
-			
-			const value = ingredientCountInput.value;
-			
-			if(listGroup.childElementCount) {
-				while(listGroup.childElementCount) {
-					let child = listGroup.firstElementChild;
-					listGroup.removeChild(child)
-				}
-	
-			}
-			
-			for (let i = 0; i < value; i++) {
-				let li = document.createElement('li')
-				let input = document.createElement('input')
-				
-				input.classList.add('form-control')
-				li.classList.add('list-group-item')
-				
-				li.appendChild(input)
-				listGroup.appendChild(li)
-			}
-		})
-		
-		addBtn.addEventListener('click', () => {
+
+	if (ingredientCountInput && listGroup && addBtn) {
+
+		const createListGroupItemDiv = () => {
+			var div = document.createElement('div')
 			let li = document.createElement('li')
 			let input = document.createElement('input')
-			
+			let btn = document.createElement('button')
+			let icon = document.createElement('i')
+
+			div.classList.add('input-group')
 			input.classList.add('form-control')
 			li.classList.add('list-group-item')
-			
-			li.appendChild(input)
-			listGroup.appendChild(li)			
+			icon.classList.add('bi', 'bi-trash', 'text-danger')
+			btn.classList.add('btn', 'deleteBtn')
+
+			btn.appendChild(icon)
+
+			div.appendChild(input)
+			div.appendChild(btn)
+
+
+			li.appendChild(div)
+			listGroup.appendChild(li)
+
+		}
+
+		const removeChildFromListGroup = () => {
+			while (listGroup.childElementCount) {
+				let child = listGroup.firstElementChild;
+				listGroup.removeChild(child)
+			}
+		}
+
+		ingredientCountInput.addEventListener('change', () => {
+
+			const value = ingredientCountInput.value;
+
+			if (listGroup.childElementCount) {
+				removeChildFromListGroup()
+
+			}
+
+			for (let i = 0; i < value; i++) {
+				createListGroupItemDiv()
+			}
+		})
+
+		addBtn.addEventListener('click', () => {
+			createListGroupItemDiv()
+		})
+		
+		Array.from(document.getElementsByClassName('deleteBtn')).forEach(item => {
+			item.preventDefault()
+			item.addEventListener('click', () => {
+				preventDefault()
+				
+				alert('Hello')
+			})
 		})
 	}
 })

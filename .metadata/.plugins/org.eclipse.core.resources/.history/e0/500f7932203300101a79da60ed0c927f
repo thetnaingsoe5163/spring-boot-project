@@ -1,0 +1,59 @@
+document.addEventListener('DOMContentLoaded', () => {
+
+	var ingredientCountInput = document.getElementById('ingredientCount')
+	var listGroup = document.getElementById('listGroup')
+	var addBtn = document.getElementById('addBtn')
+
+	if (ingredientCountInput && listGroup && addBtn) {
+
+		const createListGroupItemDiv = () => {
+			var div = document.createElement('div')
+			let li = document.createElement('li')
+			let input = document.createElement('input')
+			let span = document.createElement('span')
+			let icon = document.createElement('i')
+			let btn = document.createElement('button')
+
+			div.classList.add('input-group')
+			input.classList.add('form-control')
+			li.classList.add('list-group-item')
+			icon.classList.add('bi', 'bi-trash', 'text-danger')
+			span.classList.add('input-group-text')
+
+			span.appendChild(icon)
+
+			div.appendChild(input)
+			div.appendChild(span)
+
+
+			li.appendChild(div)
+			listGroup.appendChild(li)
+
+		}
+
+		const removeChildFromListGroup = () => {
+			while (listGroup.childElementCount) {
+				let child = listGroup.firstElementChild;
+				listGroup.removeChild(child)
+			}
+		}
+
+		ingredientCountInput.addEventListener('change', () => {
+
+			const value = ingredientCountInput.value;
+
+			if (listGroup.childElementCount) {
+				removeChildFromListGroup()
+
+			}
+
+			for (let i = 0; i < value; i++) {
+				createListGroupItemDiv()
+			}
+		})
+
+		addBtn.addEventListener('click', () => {
+			createListGroupItemDiv()
+		})
+	}
+})
