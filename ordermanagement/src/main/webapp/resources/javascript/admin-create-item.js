@@ -3,8 +3,13 @@ document.addEventListener('DOMContentLoaded', () => {
 	var ingredientCountInput = document.getElementById('ingredientCount')
 	var listGroup = document.getElementById('listGroup')
 	var addBtn = document.getElementById('addBtn')
-
-	if (ingredientCountInput && listGroup && addBtn) {
+	var form = document.getElementById('createItemForm')
+	
+	if (ingredientCountInput && listGroup && addBtn && form) {
+		
+		form.addEventListener('submit', (e) => {
+			e.preventDefault()
+		})
 
 		const createListGroupItemDiv = () => {
 			var div = document.createElement('div')
@@ -37,16 +42,18 @@ document.addEventListener('DOMContentLoaded', () => {
 			}
 		}
 
-		ingredientCountInput.addEventListener('change', () => {
-
+		ingredientCountInput.addEventListener('change', (e) => {
+			
 			const value = ingredientCountInput.value;
 
 			if (listGroup.childElementCount) {
+				console.log('Removing children')
 				removeChildFromListGroup()
 
 			}
 
 			for (let i = 0; i < value; i++) {
+				console.log(`Adding ${i}`)
 				createListGroupItemDiv()
 			}
 		})
@@ -56,10 +63,8 @@ document.addEventListener('DOMContentLoaded', () => {
 		})
 		
 		Array.from(document.getElementsByClassName('deleteBtn')).forEach(item => {
-			item.preventDefault()
+			console.log(item)
 			item.addEventListener('click', () => {
-				preventDefault()
-				
 				alert('Hello')
 			})
 		})

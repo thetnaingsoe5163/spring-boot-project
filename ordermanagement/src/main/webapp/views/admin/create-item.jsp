@@ -4,7 +4,7 @@
 
 <app:admin-layout>
 	<div class="container">
-		<form class="card mt-4 w-50">
+		<form class="card mt-4 w-50" id="createItemForm">
 			<div class="card-header">
 				<h4 class="card-title">Create New Item</h4>
 			</div>
@@ -70,6 +70,9 @@
 							<div class="card-footer">
 								<button type="button" class="btn btn-primary" id="addBtn">
 									<i class="bi bi-plus"></i> Add One
+								</button>
+								<button class="btn btn-outline-primary">
+									<i class="bi bi-send-fill"></i> Submit
 								</button>
 							</div>
 						</div>
