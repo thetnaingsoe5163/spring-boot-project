@@ -9,6 +9,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -23,6 +24,9 @@ public class Item extends AbstractEntity {
 	private String englishName;
 	private String burmeseName;
 	private String description;
+	
+	@OneToOne
+	private Category category;
 	
 	@Convert(converter = IngredientListConverter.class)
 	private List<String> ingredients;

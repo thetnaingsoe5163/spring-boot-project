@@ -1,0 +1,19 @@
+package com.tns.ordermanagement.service.admin;
+
+import org.springframework.stereotype.Service;
+
+import com.tns.ordermanagement.controller.admin.dto.AddItemForm;
+import com.tns.ordermanagement.model.repo.admin.ItemRepo;
+
+import lombok.RequiredArgsConstructor;
+
+@Service
+@RequiredArgsConstructor
+public class ItemService {
+
+	private final ItemRepo repo;
+	
+	public void insert(AddItemForm form) {
+		
+	}
+}

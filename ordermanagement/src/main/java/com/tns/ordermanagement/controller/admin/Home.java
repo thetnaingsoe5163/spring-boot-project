@@ -12,9 +12,4 @@ public class Home {
 	String index() {
 		return "admin/home";
 	}
-
-	@GetMapping("new/item")
-	String newCategory() {
-		return "admin/create-item";
-	}
 }

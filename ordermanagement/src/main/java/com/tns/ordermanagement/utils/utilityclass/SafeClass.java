@@ -1,0 +1,13 @@
+package com.tns.ordermanagement.utils.utilityclass;
+
+import java.util.Optional;
+
+import com.tns.ordermanagement.exception.AppBusinessException;
+
+public class SafeClass {
+
+	public static <T> T safeCall(Optional<T> optional, String key, Object value) {
+		return optional.orElseThrow(
+				() -> new AppBusinessException("%s: %s is not found!".formatted(key, value)));
+	}
+}

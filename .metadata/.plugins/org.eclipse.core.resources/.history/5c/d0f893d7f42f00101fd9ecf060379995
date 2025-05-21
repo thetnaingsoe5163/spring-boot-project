@@ -1,5 +1,0 @@
-package com.tns.ordermanagement.controller.dto;
-
-public class OrderForm {
-
-}

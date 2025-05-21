@@ -1,0 +1,15 @@
+package com.tns.ordermanagement.controller.admin;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping("admin")
+public class ItemController {
+
+	@GetMapping("new/item")
+	String newCategory() {
+		return "admin/create-item";
+	}
+}

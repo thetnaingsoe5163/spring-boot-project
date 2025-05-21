@@ -1,0 +1,22 @@
+package com.tns.ordermanagement.service.admin;
+
+import org.springframework.stereotype.Service;
+
+import com.tns.ordermanagement.controller.admin.dto.AddItemForm;
+import com.tns.ordermanagement.model.repo.admin.CategoryRepo;
+import com.tns.ordermanagement.model.repo.admin.ItemRepo;
+import com.tns.ordermanagement.utils.utilityclass.SafeClass;
+
+import lombok.RequiredArgsConstructor;
+
+@Service
+@RequiredArgsConstructor
+public class ItemService {
+
+	private final ItemRepo itemRepo;
+	private final CategoryRepo categoryRepo;
+	
+	public void insert(AddItemForm form) {
+		var category = SafeClass.safeCall(categoryRepo.findById(form.getCategory()), "Category", form.getCategory());
+	}
+}
