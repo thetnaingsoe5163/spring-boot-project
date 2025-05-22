@@ -5,7 +5,10 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @Configuration
-@EnableJpaRepositories(basePackages = "com.tns.ordermanagement.model.entity")
+@EnableJpaRepositories(basePackages = {
+		"com.tns.ordermanagement.model.entity",
+		"com.tns.ordermanagement.model.repo"
+})
 @EnableJpaAuditing
 public class JpaApplicationConfig {
 
