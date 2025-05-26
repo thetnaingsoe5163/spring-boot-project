@@ -20,7 +20,7 @@
 	
 	<nav class="navbar navbar-expand shadow">
 		<div class="container">
-			<a href="${root}/" class="navbar-brand">
+			<a href="${root}/admin" class="navbar-brand">
 				<i class="bi bi-fork-knife"></i> Restaurant 
 			</a>
 			<ul class="navbar-nav">
@@ -41,6 +41,11 @@
 						</li>
 					</ul>
 				</li>
+				<li class="nav-item align-items-center">
+					<a href="" class="nav-link">
+						logout
+					</a>
+				</li>
 			</ul>
 		</div>
 	</nav>	
@@ -52,7 +57,7 @@
 	
 	<div class="modal" id="addCategoryModal">
 		<div class="modal-dialog">
-			<form action="#" id="addCategoryForm" class="modal-content">
+			<form action="${root}/admin/new/category" id="addCategoryForm" class="modal-content">
 				<div class="modal-header">
 					<h5 class="modal-title">Add New Category</h5>
 					<button type="button" class="btn-close" data-bs-dismiss="modal" ></button>
