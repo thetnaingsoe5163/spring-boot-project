@@ -15,15 +15,17 @@ import lombok.Data;
 @Data
 @MappedSuperclass
 @EntityListeners(value = AuditingEntityListener.class)
-public class AbstractEntity {
+public abstract class AbstractEntity {
 
 	@CreatedDate
 	private LocalDateTime createdAt;
+	
 	@CreatedBy
 	private String createdBy;
 	
 	@LastModifiedDate
 	private LocalDateTime updatedAt;
+	
 	@LastModifiedBy
 	private String updatedBy;
 }

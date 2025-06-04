@@ -36,8 +36,6 @@
     <fullyQualifiedTypeName name="com.tns.ordermanagement.model.repo.admin.ItemRepo"/>
     <fullyQualifiedTypeName name="com.tns.ordermanagement.controller.admin.dto.AddItemForm"/>
     <fullyQualifiedTypeName name="java.lang.RuntimeException"/>
-    <fullyQualifiedTypeName name="com.tns.ordermanagement.exception.AppBusinessException"/>
-    <fullyQualifiedTypeName name="com.tns.ordermanagement.model.entity.Category"/>
     <fullyQualifiedTypeName name="java.lang.Integer"/>
     <fullyQualifiedTypeName name="com.tns.ordermanagement.utils.utilityclass.SafeClass"/>
     <fullyQualifiedTypeName name="com.tns.ordermanagement.model.entity.Item"/>
@@ -60,4 +58,6 @@
     <fullyQualifiedTypeName name="jakarta.persistence.criteria.CriteriaBuilder"/>
     <fullyQualifiedTypeName name="jakarta.persistence.criteria.CriteriaQuery"/>
     <fullyQualifiedTypeName name="java.util.Optional"/>
+    <fullyQualifiedTypeName name="com.tns.ordermanagement.exception.AppBusinessException"/>
+    <fullyQualifiedTypeName name="com.tns.ordermanagement.model.entity.Category"/>
 </qualifiedTypeNameHistroy>

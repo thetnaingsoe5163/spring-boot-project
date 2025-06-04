@@ -1,10 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="app" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
 
 <app:admin-layout>
 	<div class="container">
-		<form class="card mt-4 w-50" id="createItemForm">
+		<sf:form modelAttribute="addItemForm" method="post" 
+			class="card mt-4 w-50" id="createItemForm">
 			<div class="card-header">
 				<h4 class="card-title">Create New Item</h4>
 			</div>
@@ -14,12 +17,12 @@
 						<label class="form-label">Category:</label>
 					</div>
 					<div class="col-8">
-						<select name="" id="" class="form-select">
+						<sf:select path="category" class="form-select">
 							<option value="">Select Category</option>
-							<option value="">Appetizer</option>
-							<option value="">Salads</option>
-							<option value="">Soups</option>
-						</select>
+							<c:forEach items="${categories}" var="category" >
+								<sf:option value="${category.id()}">${category.name()}</sf:option>							
+							</c:forEach>
+						</sf:select>
 					</div>
 				</div>
 				<div class="row mt-3">
@@ -27,7 +30,7 @@
 						<label class="form-label">English Name:</label>
 					</div>
 					<div class="col-8">
-						<input type="text" class="form-control" />
+						<sf:input path="englishName" type="text" class="form-control" />
 					</div>
 				</div>
 				<div class="row mt-3">
@@ -35,7 +38,7 @@
 						<label class="form-label">Burmese Name:</label>
 					</div>
 					<div class="col-8">
-						<input type="text" class="form-control" />
+						<sf:input path="burmeseName" type="text" class="form-control" />
 					</div>
 				</div>
 				<div class="row mt-3">
@@ -43,7 +46,7 @@
 						<label class="form-label">Description:</label>
 					</div>
 					<div class="col-8">
-						<textarea  class="form-control"></textarea>
+						<sf:textarea path="description" class="form-control"></sf:textarea>
 					</div>
 				</div>
 				<div class="row mt-3">
@@ -79,7 +82,7 @@
 					</div>
 				</div>								
 			</div>
-		</form>
+		</sf:form>
 	</div>
 	
 	<script src="${root}/resources/javascript/admin-create-item.js"></script>

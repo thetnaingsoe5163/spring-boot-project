@@ -1,5 +1,6 @@
 <%@ tag language="java" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
 
 <!DOCTYPE html>
 <html>
@@ -35,7 +36,7 @@
 							</a>
 						</li>
 						<li>
-							<a href="${root}/admin/new/item" class="dropdown-item">
+							<a href="${root}/admin/item/new" class="dropdown-item">
 								<i class="bi bi-arrow-bar-right"></i> New Item
 							</a>
 						</li>
@@ -57,21 +58,32 @@
 	
 	<div class="modal" id="addCategoryModal">
 		<div class="modal-dialog">
-			<form action="${root}/admin/new/category" id="addCategoryForm" class="modal-content">
+			<sf:form action="${root}/admin/item/new/category" modelAttribute="form" method="post"
+			 	id="addCategoryForm" class="modal-content">
 				<div class="modal-header">
 					<h5 class="modal-title">Add New Category</h5>
 					<button type="button" class="btn-close" data-bs-dismiss="modal" ></button>
 				</div>
 				<div class="modal-body">
 					<label class="form-label">Enter New Category</label>
-					<input type="text" class="form-control" placeholder="enter" />
+					<input type="text" name="name" class="form-control" placeholder="enter" />
+					<c:forEach items="${result.fieldErrors}" var="error">
+						<c:if test="${error.field == 'name'}">
+							<span class="text-danger">${error.defaultMessage}</span>
+						</c:if>
+					</c:forEach>
+					<input type="hidden" name="requestMadePath" value="${pageContext.request.requestURI}">
 				</div>
 				<div class="modal-footer">
-					<button type="submit" class="btn btn-primary">Add</button>
+					<button type="submit" id="modalBtn" class="btn btn-primary">Add</button>
 				</div>
-			</form>
+			</sf:form>
 		</div>
 	</div>
+	
+	<c:if test="${openModal == true}">
+		<span style="display: none;" id="openModalFlag"></span>
+	</c:if>
 	
 	<script type="text/javascript" src="${root}/resources/javascript/admin-layout.js"></script>
 	
