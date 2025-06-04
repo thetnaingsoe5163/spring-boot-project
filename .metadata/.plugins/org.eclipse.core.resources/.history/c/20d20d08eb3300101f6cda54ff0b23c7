@@ -1,5 +1,0 @@
-package com.tns.ordermanagement.controller.admin.dto;
-
-public class AddItemForm {
-
-}
