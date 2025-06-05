@@ -6,7 +6,7 @@
 
 <app:admin-layout>
 	<div class="container">
-		<sf:form modelAttribute="addItemForm" method="post" 
+		<sf:form action="${root}/admin/item" modelAttribute="addItemForm" method="post" 
 			class="card mt-4 w-50" id="createItemForm">
 			<div class="card-header">
 				<h4 class="card-title">Create New Item</h4>
@@ -74,7 +74,7 @@
 								<button type="button" class="btn btn-primary" id="addBtn">
 									<i class="bi bi-plus"></i> Add One
 								</button>
-								<button class="btn btn-outline-primary">
+								<button type="submit" id="formBtn" class="btn btn-outline-primary">
 									<i class="bi bi-send-fill"></i> Submit
 								</button>
 							</div>
