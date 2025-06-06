@@ -6,10 +6,16 @@
 
 <app:admin-layout>
 	<div class="container">
-		<sf:form action="${root}/admin/item" modelAttribute="addItemForm" method="post" 
+		<sf:form action="${root}/admin/item" enctype="multipart/form-data" modelAttribute="addItemForm" method="post" 
 			class="card mt-4 w-50" id="createItemForm">
 			<div class="card-header">
-				<h4 class="card-title">Create New Item</h4>
+				<div class="d-flex justify-content-between">
+					<h4 class="card-title">Create New Item</h4>		
+					<button type="submit" id="formBtn" class="btn btn-outline-primary">
+						<i class="bi bi-send-fill"></i> Submit
+					</button>									
+				</div>
+
 			</div>
 			<div class="card-body">
 				<div class="row">
@@ -74,14 +80,21 @@
 								<button type="button" class="btn btn-primary" id="addBtn">
 									<i class="bi bi-plus"></i> Add One
 								</button>
-								<button type="submit" id="formBtn" class="btn btn-outline-primary">
-									<i class="bi bi-send-fill"></i> Submit
-								</button>
 							</div>
 						</div>
 					</div>
-				</div>								
-			</div>
+				</div>
+				<div class="row mt-3">
+					<div class="col-4">
+						<label class="form-label">Image:</label>
+					</div>
+					<div class="col-8">
+						<button id="imageBtn" type="button" class="btn btn-outline-primary">Upload</button>
+						<sf:input id="imageInput" type="file" path="imageFile" accept="image/*" cssClass="d-none" />
+						<img id="preview" src="" alt="preview" class="img-thumbnail d-none mt-3" />
+					</div>
+				</div>												
+			</div>			
 		</sf:form>
 	</div>
 	

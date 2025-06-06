@@ -55,7 +55,8 @@ public class ItemController {
 			@ModelAttribute("addItemForm") @Validated AddItemForm form,
 			BindingResult result) {
 		
-		itemService.insert(form);
+//		itemService.insert(form);
+		System.out.println(form);
 		return "redirect:/admin/item/new";
 	}
 	

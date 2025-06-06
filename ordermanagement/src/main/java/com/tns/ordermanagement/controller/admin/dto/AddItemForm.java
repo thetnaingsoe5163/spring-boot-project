@@ -3,6 +3,8 @@ package com.tns.ordermanagement.controller.admin.dto;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
@@ -17,4 +19,5 @@ public class AddItemForm {
 	private String description;
 	
 	private List<String> ingredients = new ArrayList<>();
+	private MultipartFile imageFile;
 }
