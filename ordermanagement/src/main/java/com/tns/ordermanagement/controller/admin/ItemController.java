@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.tns.ordermanagement.controller.admin.dto.AddItemForm;
 import com.tns.ordermanagement.controller.admin.dto.NewCategoryForm;
 import com.tns.ordermanagement.service.admin.CategoryService;
+import com.tns.ordermanagement.service.admin.ItemService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -21,6 +22,7 @@ import lombok.RequiredArgsConstructor;
 public class ItemController {
 
 	private final CategoryService categoryService;
+	private final ItemService itemService;
 	
 	@GetMapping("new")
 	String newItem(ModelMap model) {
@@ -53,7 +55,7 @@ public class ItemController {
 			@ModelAttribute("addItemForm") @Validated AddItemForm form,
 			BindingResult result) {
 		
-		System.out.println(form);
+		itemService.insert(form);
 		return "redirect:/admin/item/new";
 	}
 	
