@@ -23,7 +23,6 @@ document.addEventListener('DOMContentLoaded', () => {
 					input.setAttribute('name', `ingredients[${index}]`)
 					index++
 				} else {
-					console.log('no value')
 					listGroup.removeChild(li)	
 				}
 			}	
