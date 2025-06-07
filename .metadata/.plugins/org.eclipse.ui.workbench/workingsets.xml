@@ -5,6 +5,7 @@
 <workingSet editPageId="org.eclipse.ui.resourceWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1749228284422_3" label="" name="">
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/balance-management" type="4"/>
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/ordermanagement" type="4"/>
+<item TAG_MARKER_ID="485" TAG_RESOURCE_FACTORY_ID="org.eclipse.ui.internal.model.ResourceFactory" factoryID="org.eclipse.debug.ui.elementFactory.breakpoints" path="/ordermanagement/src/main/java/com/tns/ordermanagement/service/admin/ItemService.java" type="1"/>
 </workingSet>
 <workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1747052171753_2" label="Window Working Set" name="Aggregate for window 1747052171753"/>
 </workingSetManager>

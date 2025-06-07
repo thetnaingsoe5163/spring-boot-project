@@ -1,76 +1,39 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="app" tagdir="/WEB-INF/tags/" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <app:guest-layout>	
 	<div class="container">
 		
 		<ul class="nav nav-underline justify-content-center">
 			<li class="nav-item">
-				<a href="" class="nav-link text-dark">
+				<a href="#" data-uri="${root}/items/0" class="nav-link text-dark category-link">
 					All
-				</a>
-			</li>		
-			<li class="nav-item">
-				<a href="" class="nav-link text-dark">
-					Appetizers
-				</a>
+				</a>			
 			</li>
-			<li class="nav-item">
-				<a href="" class="nav-link text-dark">
-					Salads
-				</a>
-			</li>
-			<li class="nav-item">
-				<a href="" class="nav-link text-dark">
-					Soups
-				</a>
-			</li>	
-			<li class="nav-item">
-				<a href="" class="nav-link text-dark">
-					Noodle Dishes
-				</a>
-			</li>	
-			<li class="nav-item">
-				<a href="" class="nav-link text-dark">
-					Desert
-				</a>
-			</li>			
-			<li class="nav-item">
-				<a href="" class="nav-link text-dark">
-					Beverages
-				</a>
-			</li>																												
+			<c:forEach items="${categories}" var="category">
+				<li class="nav-item">
+					<a href="#" data-uri="${root}/items/${category.id()}" class="nav-link text-dark category-link">
+						${category.name()}
+					</a>									
+				</li>
+			</c:forEach>					
 		</ul>
 	</div>
 	
 	<main class="mt-4">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-3 col-md-4 col-sm-6">
-					<app:item-menu-card 
-						imagePath="${root}/resources/images/Nan_Gyi_Thoke.jpg" 
-						englishName="Nan Gyi Thoke" burmeseName="နန်းကြီးသုပ်" 
-						description="Burmese traditional noodle salad with chicken and chili sauces" />
-				</div>
-				<div class="col-lg-3 col-md-4 col-sm-6">
-					<app:item-menu-card 
-						imagePath="${root}/resources/images/Mohnga.jpg" 
-						englishName="Mohnga" burmeseName="မုန့်ဟင်းခါး" 
-						description="Burmese Traditional noodle with fish soup" />
-				</div>
-				<div class="col-lg-3 col-md-4 col-sm-6">
-					<app:item-menu-card 
-						imagePath="${root}/resources/images/Myanmar_Traditional_Tea.jpg" 
-						englishName="Myanmar Milk Tea" burmeseName="လက်ဖက်ရည်" 
-						description="Burmese Traditional tea with milk" />					
-				</div>
-				<div class="col-lg-3 col-md-4 col-sm-6">
-					<app:item-menu-card 
-						imagePath="${root}/resources/images/Ohn_No_Khao_Swe.jpg" 
-						englishName="Myanmar Noddle with coconut milk" burmeseName="အုန်းနို့ခေါက်ဆွဲ" 
-						description="Burmese Traditional creamy noodle with coconut milk" />					
-				</div>																				
+				<c:forEach items="${items}" var="item">
+					<div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+						<app:item-menu-card 
+							imagePath="${root}/resources/images/Nan_Gyi_Thoke.jpg"
+							id="${item.id()}" categoryId="${item.categoryId()}" categoryName="${item.categoryName()}" 
+							englishName="${item.englishName()}" burmeseName="${item.burmeseName()}" 
+							description="${item.description()}" ingredients="${item.ingredients()}" />
+					</div>				
+				</c:forEach>																		
 			</div>		
 		</div>
 	</main>
@@ -94,20 +57,20 @@
 							<ul class="list-group list-group-flush">
 								<li class="list-group-item">
 									<div class="row">
-										<div class="col-6">
+										<div class="col-4">
 											English Name
 										</div>
-										<div class="col-auto">
+										<div id="modal-english-name" class="col-auto">
 											Mohnga
 										</div>
 									</div>
 								</li>							
 								<li class="list-group-item">
 									<div class="row">
-										<div class="col-6">
+										<div class="col-4">
 											Burmese Name
 										</div>
-										<div class="col-auto">
+										<div class="col-auto" id="modal-burmese-name">
 											မုန့်ဟင်းခါး
 										</div>
 									</div>
@@ -115,7 +78,7 @@
 							</ul>					
 						</div>
 					</div>
-					<p>
+					<p id="modal-description">
 						Burmese traditional noodle salad with chicken and chili sauces
 					</p>
 					<div class="card mt-2">
@@ -123,9 +86,7 @@
 							<h5 class="card-title">Main Ingredients</h5>						
 						</div>
 						<div class="card-body">
-							<ul class="list-group list-group-flush">
-								<li class="list-group-item">Noodle (မုန့်ဖတ်)</li>
-								<li class="list-group-item">Fish soup (ငါးဟင်းရည်)</li>
+							<ul class="list-group list-group-flush" id="modal-ingredients">
 							</ul>							
 						</div>
 					</div>

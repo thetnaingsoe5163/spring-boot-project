@@ -14,6 +14,7 @@ import com.tns.ordermanagement.controller.admin.dto.NewCategoryForm;
 import com.tns.ordermanagement.service.admin.CategoryService;
 import com.tns.ordermanagement.service.admin.ItemService;
 
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 
 @Controller
@@ -52,10 +53,11 @@ public class ItemController {
 	
 	@PostMapping
 	String save(
+			HttpServletRequest request,
 			@ModelAttribute("addItemForm") @Validated AddItemForm form,
 			BindingResult result) {
 		
-//		itemService.insert(form);
+		itemService.insert(form, request);
 		System.out.println(form);
 		return "redirect:/admin/item/new";
 	}

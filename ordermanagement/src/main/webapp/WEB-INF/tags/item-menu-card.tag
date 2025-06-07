@@ -1,10 +1,23 @@
 <%@ tag language="java" pageEncoding="UTF-8"%>
-<%@ attribute name="imagePath" required="true" %>
+<%@ attribute name="id" required="true" %>
+<%@ attribute name="categoryId" required="true" %>
+<%@ attribute name="categoryName" required="true" %>
 <%@ attribute name="englishName" required="true" %>
 <%@ attribute name="burmeseName" required="true" %>
 <%@ attribute name="description" required="true" %>
+<%@ attribute name="imagePath" required="true" %>
+<%@ attribute name="ingredients" required="true" %>
 
-<div class="card fixed-card-size">
+<div class="card fixed-card-size"
+	data-id="${id}"
+	data-category-id="${categoryId}"
+	data-category-name="${categoryName}"
+	data-english-name="${englishName}"
+	data-burmese-name="${burmeseName}"
+	data-description="${description}"
+	data-imagePath="${imagePath}"
+	data-ingredients="${ingredients}"
+	>
 	<div class="card-header">
 		<img data-image="${imagePath}" src="${imagePath}" alt="${imagePath}" class="card-img fixed-img-card-size" />
 	</div>

@@ -6,6 +6,7 @@
 	</section>
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
+			<item value="D:\web-projects\spring-boot-project"/>
 			<item value="D:\web-projects\springboot\spw-04-balance-management"/>
 			<item value="D:\Java(JDC)\spring\pratical\spw-04-balance-management"/>
 		</list>
