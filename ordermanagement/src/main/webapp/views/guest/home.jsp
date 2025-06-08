@@ -5,7 +5,6 @@
 
 <app:guest-layout>	
 	<div class="container">
-		
 		<ul class="nav nav-underline justify-content-center">
 			<li class="nav-item">
 				<a href="#" data-uri="${root}/items/0" class="nav-link text-dark category-link">
@@ -90,9 +89,13 @@
 							</ul>							
 						</div>
 					</div>
-					<form action="${root}/guest/order" method="post" class="mt-3">
-						<input type="hidden" name="id" value="1"/>
+										
+					<form action="${root}/guest/order/add" method="post" class="mt-3">
+						<input type="hidden" name="id" id="id"/>
 						<input type="hidden" name="quantity" id="hiddenQuantity" value="1" />
+						<input type="hidden" name="englishName" id="hiddenBurmeseName"/>
+						<input type="hidden" name="burmeseName" id="hiddenEnglishName"/>
+						
 						<div class="d-flex align-items-center mb-2">
 							<h5>Quantity: </h5>
 							<button class="btn" id="minusBtn">
@@ -104,7 +107,7 @@
 							</button>	
 						</div>
 						<div class="form-floating mt-3">
-	  						<textarea class="form-control" placeholder="Tell chef order details" id="floatingTextarea"></textarea>
+	  						<textarea name="details" class="form-control" placeholder="Tell chef order details" id="floatingTextarea"></textarea>
 	  						<label for="floatingTextarea">Order Details</label>
 						</div>
 						<button type="submit" class="btn btn-primary mt-3">

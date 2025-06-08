@@ -25,10 +25,10 @@
 				<i class="bi bi-fork-knife"></i> Restaurant 
 			</a>
 			<div class="d-flex align-items-center">
-				<a href="${root}/guest/order" class="btn position-relative me-4"> 
+				<a href="${root}/guest/order/details" class="btn position-relative me-4"> 
 					<i class="bi bi-cart3"></i>
 					<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info">
-	    				99+
+	    				${orderForm eq null ? '0' : orderForm.getTotalQuantity()}
 	    				<span class="visually-hidden">Items in the cart</span>
 	  				</span>
 				</a>

@@ -32,12 +32,21 @@ document.addEventListener('DOMContentLoaded', () => {
 				const burName = document.getElementById('modal-burmese-name')
 				const description = document.getElementById('modal-description')
 				const ingredients = document.getElementById('modal-ingredients')
+				const id = document.getElementById('id')
+				const hiddenEngName = document.getElementById('hiddenEnglishName')
+				const hiddenBurName = document.getElementById('hiddenBurmeseName')
 
-				if (engName && burName && description && ingredients) {
+				if (engName && burName && description 
+						&& ingredients && id
+						&& hiddenEngName && hiddenBurName) {
 
 					engName.innerText = card.dataset['englishName']
 					burName.innerText = card.dataset['burmeseName']
 					description.innerText = card.dataset['description']
+					id.value = card.dataset['id']
+					
+					hiddenEngName.value = engName.innerText
+					hiddenBurName.value = burName.innerText
 
 					const arr = card.dataset['ingredients']
 						.slice(1, -1)
