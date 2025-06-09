@@ -28,6 +28,8 @@ public class Item extends AbstractEntity {
 	@ManyToOne
 	private Category category;
 	
+	private int unitPrice;
+	
 	@Convert(converter = IngredientListConverter.class)
 	private List<String> ingredients;
 	

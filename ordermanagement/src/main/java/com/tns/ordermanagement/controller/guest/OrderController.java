@@ -1,5 +1,7 @@
 package com.tns.ordermanagement.controller.guest;
 
+import java.util.ArrayList;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,9 +31,16 @@ public class OrderController {
 		return "redirect:/";
 	}
 	
+	@PostMapping("remove")
+	String removeItem(@ModelAttribute("orderForm") OrderForm form, ModelMap model) {
+		var list = new ArrayList<>(form.getItems().stream().filter(i -> !i.isDeleted()).toList());
+		form.setItems(list);
+		return "redirect:/guest/order/details";
+	}
+	
 	@GetMapping("details")
 	String showOrderDetails(@ModelAttribute("orderForm") OrderForm form, ModelMap model) {
-		model.put("items", form.getItems());
+		model.put("form", form);
 		return "guest/order-details";
 	}
 	
