@@ -33,7 +33,7 @@
 									value="${item.details}"
 								/>
 							</td>
-							<td>3000 MMK</td>
+							<td id="unitPrice${status.index}">${item.unitPrice}</td>
 							<td>
 								<sf:input path="items[${status.index}].deleted" cssClass="d-none" id="deleted${status.index}"/>
 								<div class="d-flex align-items-center mb-2 justify-content-center">
@@ -47,7 +47,7 @@
 									</button>	
 								</div>							
 							</td>
-							<td class="text-end">6000 MMK</td>
+							<td class="text-end totalPrice" id="totalPrice${status.index}"></td>
 							<td class="text-end">
 								<i class="bi bi-trash3 text-danger"></i>
 							</td>
@@ -58,7 +58,7 @@
 			<tfoot>
 				<tr class="table-group-divider">
 					<td colspan="3">Total Amount</td>
-					<td class="text-end">6000 MMK</td>
+					<td class="text-end" id="allTotalPrice">6000 MMK</td>
 					<td></td>
 				</tr>
 				<tr>

@@ -11,7 +11,7 @@ public class OrderForm {
 	private List<OrderItem> items = new ArrayList<>();
 
 	public void add(OrderItem item) {
-		var index = index(item.getId());
+		var index = index(item.getItemId());
 		if(index < 0) {
 			items.add(item);
 		} else {
@@ -27,10 +27,14 @@ public class OrderForm {
 
 	private int index(int id) {
 		for (int i = 0; i < items.size(); i++) {
-			if (items.get(i).getId() == id) {
+			if (items.get(i).getItemId() == id) {
 				return i;
 			}
 		}
 		return -1;
+	}
+
+	public void clear() {
+		items.clear();
 	}
 }

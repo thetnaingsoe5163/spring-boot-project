@@ -17,6 +17,7 @@ public class AddItemForm {
 	private String englishName;
 	private String burmeseName;
 	private String description;
+	private int unitPrice;
 	
 	private List<String> ingredients = new ArrayList<>();
 	private MultipartFile imageFile;

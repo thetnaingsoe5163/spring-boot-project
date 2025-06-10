@@ -33,20 +33,29 @@ document.addEventListener('DOMContentLoaded', () => {
 				const description = document.getElementById('modal-description')
 				const ingredients = document.getElementById('modal-ingredients')
 				const img = document.getElementById('modal-img')
+				const unitPrice = document.getElementById('modal-unit-price')
+				
 				const id = document.getElementById('id')
+				const categoryId = document.getElementById('categoryId')
 				const hiddenEngName = document.getElementById('hiddenEnglishName')
 				const hiddenBurName = document.getElementById('hiddenBurmeseName')
+				const hiddenUnitPrice = document.getElementById('hiddenUnitPrice')
 
 				if (engName && burName && description 
-						&& ingredients && img && id
-						&& hiddenEngName && hiddenBurName) {
+						&& ingredients && img && id && unitPrice 
+						&& categoryId && hiddenEngName 
+						&& hiddenBurName && hiddenUnitPrice) {
 
 					engName.innerText = card.dataset['englishName']
-					burName.innerText = card.dataset['burmeseName']
+					burName.innerText = card.dataset['burmeseName']	
 					description.innerText = card.dataset['description']
+					unitPrice.innerText = card.dataset['unitPrice']
 					img.setAttribute('src', card.dataset['imagePath'])
 					img.setAttribute('alt', card.dataset['imagePath'])
+					
 					id.value = card.dataset['id']
+					categoryId.value = card.dataset['categoryId']
+					hiddenUnitPrice.value = card.dataset['unitPrice']
 					
 					hiddenEngName.value = engName.innerText
 					hiddenBurName.value = burName.innerText
@@ -64,15 +73,30 @@ document.addEventListener('DOMContentLoaded', () => {
 			})
 		})
 	}
-
+	
+	/**
 	const categoryLinks = Array.from(document.getElementsByClassName('category-link'))
 	categoryLinks.forEach(link => {
 		link.addEventListener('click', (e) => {
-			e.preventDefault()
 
 			const uri = link.dataset['uri']
 			console.log(uri)
+			
+			fetch(uri)
+			.then(resp => {
+				if(!resp.ok) {
+					throw new Error('Error occurs while fetching data.')
+				}
+				return resp.json()
+			})
+			.then(data => {
+				console.log(data)
+			})
+			.catch(error => {
+				console.log(error)
+			})
 		})
 	})
+	*/
 
 })

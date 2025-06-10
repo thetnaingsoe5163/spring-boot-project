@@ -10,6 +10,7 @@ public record ItemDto(
 		String categoryName,
 		String englishName,
 		String burmeseName,
+		int unitPrice,
 		String description,
 		String image,
 		List<String> ingredients
@@ -22,6 +23,7 @@ public record ItemDto(
 				item.getCategory().getName(),
 				item.getEnglishName(),
 				item.getBurmeseName(),
+				item.getUnitPrice(),
 				item.getDescription(),
 				item.getImage(),
 				item.getIngredients());

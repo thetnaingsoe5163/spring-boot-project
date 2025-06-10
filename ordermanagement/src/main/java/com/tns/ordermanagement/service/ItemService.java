@@ -11,7 +11,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.tns.ordermanagement.controller.admin.dto.AddItemForm;
 import com.tns.ordermanagement.controller.commondto.ItemDto;
-import com.tns.ordermanagement.exception.AppBusinessException;
 import com.tns.ordermanagement.model.entity.Item;
 import com.tns.ordermanagement.model.repo.CategoryRepo;
 import com.tns.ordermanagement.model.repo.ItemRepo;
@@ -36,16 +35,19 @@ public class ItemService {
 		item.setBurmeseName(form.getBurmeseName());
 		item.setDescription(form.getDescription());
 		item.setIngredients(form.getIngredients());
-
+		item.setUnitPrice(form.getUnitPrice());
+		
+		item = itemRepo.save(item);
+		
 		if (form.getImageFile() != null && !form.getImageFile().isEmpty()) {
-			var fileName = getValidFileName(form.getImageFile(), form.getEnglishName());
+			var fileName = getValidFileName(form.getImageFile(), item.getId());
 			var filePath = request.getServletContext().getRealPath("/resources/images/items");
 
 			savePhoto(form.getImageFile(), fileName, filePath);
 			item.setImage(fileName);
+			itemRepo.save(item);
 		}
 
-		itemRepo.save(item);
 	}
 	
 	public List<ItemDto> findAll() {
@@ -64,18 +66,17 @@ public class ItemService {
 
 	}
 
-	private String getValidFileName(MultipartFile file, String itemName) {
+	private String getValidFileName(MultipartFile file, Integer id) {
 
-		var item = itemRepo.findByEnglishName(itemName);
 		var fileName = file.getOriginalFilename();
 
 		var arr = fileName.split("\\.");
 		var extension = arr[arr.length - 1];
 
-		if (item.isPresent()) {
-			throw new AppBusinessException("Item already exists.");
-		}
+		return "%d.%s".formatted(id, extension);
+	}
 
-		return "%s.%s".formatted(itemName, extension);
+	public List<ItemDto> findByCategoryId(int id) {
+		return itemRepo.findByCategory_Id(id).stream().map(ItemDto::new).toList();
 	}
 }

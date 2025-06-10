@@ -3,6 +3,7 @@ package com.tns.ordermanagement.controller.guest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.tns.ordermanagement.service.CategoryService;
@@ -29,4 +30,14 @@ public class HomeController {
 		return "guest/home";
 	}
 	
+	@GetMapping("items/{id}")
+	String itemsByCategory(ModelMap model, @PathVariable int id) {
+		
+		var categories = categoryService.findAll();
+		var items = itemService.findByCategoryId(id);
+		
+		model.put("categories", categories);
+		model.put("items", items);
+		return "guest/home";
+	}
 }

@@ -49,6 +49,14 @@
 				</div>
 				<div class="row mt-3">
 					<div class="col-4">
+						<label class="form-label">Unit Price</label>
+					</div>
+					<div class="col-8">
+						<sf:input path="unitPrice" type="number" class="form-control" />
+					</div>
+				</div>
+				<div class="row mt-3">
+					<div class="col-4">
 						<label class="form-label">Description:</label>
 					</div>
 					<div class="col-8">

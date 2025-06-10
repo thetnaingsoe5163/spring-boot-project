@@ -58,7 +58,6 @@ public class ItemController {
 			BindingResult result) {
 		
 		itemService.insert(form, request);
-		System.out.println(form);
 		return "redirect:/admin/item/new";
 	}
 	

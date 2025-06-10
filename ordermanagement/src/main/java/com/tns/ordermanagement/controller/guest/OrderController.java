@@ -12,22 +12,29 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.tns.ordermanagement.controller.guest.dto.OrderForm;
 import com.tns.ordermanagement.controller.guest.dto.OrderItem;
+import com.tns.ordermanagement.service.SaleService;
+
+import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequestMapping("guest/order")
 @SessionAttributes("orderForm")
+@RequiredArgsConstructor
 public class OrderController {
 
+	private final SaleService saleService;
+	
 	@PostMapping
 	String submitOrder(@ModelAttribute("orderForm") OrderForm form) {
-		System.out.println("Form");
-		System.out.println(form);
-		return "guest/order-details";
+		saleService.submit(form);
+		form.clear();
+		return "redirect:/";
 	}
 	
 	@PostMapping("add")
 	String addItem(@ModelAttribute("orderItem") OrderItem item, @ModelAttribute("orderForm") OrderForm form) {
 		form.add(item);
+		System.out.println(form);
 		return "redirect:/";
 	}
 	

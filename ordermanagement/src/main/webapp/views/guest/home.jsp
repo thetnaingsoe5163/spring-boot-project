@@ -7,13 +7,13 @@
 	<div class="container">
 		<ul class="nav nav-underline justify-content-center">
 			<li class="nav-item">
-				<a href="#" data-uri="${root}/items/0" class="nav-link text-dark category-link">
+				<a href="${root}/" data-uri="${root}/" class="nav-link text-dark category-link">
 					All
 				</a>			
 			</li>
 			<c:forEach items="${categories}" var="category">
 				<li class="nav-item">
-					<a href="#" data-uri="${root}/items/${category.id()}" class="nav-link text-dark category-link">
+					<a href="${root}/items/${category.id()}" data-uri="${root}/items/${category.id()}" class="nav-link text-dark category-link">
 						${category.name()}
 					</a>									
 				</li>
@@ -29,7 +29,7 @@
 						<app:item-menu-card 
 							imagePath="${root}/resources/images/items/${item.image()}"
 							id="${item.id()}" categoryId="${item.categoryId()}" categoryName="${item.categoryName()}" 
-							englishName="${item.englishName()}" burmeseName="${item.burmeseName()}" 
+							englishName="${item.englishName()}" burmeseName="${item.burmeseName()}" unitPrice="${item.unitPrice()}"
 							description="${item.description()}" ingredients="${item.ingredients()}" />
 					</div>				
 				</c:forEach>																		
@@ -69,6 +69,14 @@
 										<div class="col-auto" id="modal-burmese-name"></div>
 									</div>
 								</li>
+								<li class="list-group-item">
+									<div class="row">
+										<div class="col-4">
+											Unit Price
+										</div>
+										<div class="col-auto" id="modal-unit-price"></div>
+									</div>
+								</li>								
 							</ul>					
 						</div>
 					</div>
@@ -84,10 +92,12 @@
 					</div>
 										
 					<form action="${root}/guest/order/add" method="post" class="mt-3">
-						<input type="hidden" name="id" id="id"/>
+						<input type="hidden" name="itemId" id="id"/>
+						<input type="hidden" name="categoryId" id="categoryId" />
 						<input type="hidden" name="quantity" id="hiddenQuantity" value="1" />
 						<input type="hidden" name="englishName" id="hiddenBurmeseName"/>
 						<input type="hidden" name="burmeseName" id="hiddenEnglishName"/>
+						<input type="hidden" name="unitPrice" id="hiddenUnitPrice">
 						
 						<div class="d-flex align-items-center mb-2">
 							<h5>Quantity: </h5>
