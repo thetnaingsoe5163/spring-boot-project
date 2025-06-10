@@ -32,17 +32,20 @@ document.addEventListener('DOMContentLoaded', () => {
 				const burName = document.getElementById('modal-burmese-name')
 				const description = document.getElementById('modal-description')
 				const ingredients = document.getElementById('modal-ingredients')
+				const img = document.getElementById('modal-img')
 				const id = document.getElementById('id')
 				const hiddenEngName = document.getElementById('hiddenEnglishName')
 				const hiddenBurName = document.getElementById('hiddenBurmeseName')
 
 				if (engName && burName && description 
-						&& ingredients && id
+						&& ingredients && img && id
 						&& hiddenEngName && hiddenBurName) {
 
 					engName.innerText = card.dataset['englishName']
 					burName.innerText = card.dataset['burmeseName']
 					description.innerText = card.dataset['description']
+					img.setAttribute('src', card.dataset['imagePath'])
+					img.setAttribute('alt', card.dataset['imagePath'])
 					id.value = card.dataset['id']
 					
 					hiddenEngName.value = engName.innerText

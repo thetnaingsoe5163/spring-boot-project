@@ -15,7 +15,7 @@
 	data-english-name="${englishName}"
 	data-burmese-name="${burmeseName}"
 	data-description="${description}"
-	data-imagePath="${imagePath}"
+	data-image-path="${imagePath}"
 	data-ingredients="${ingredients}"
 	>
 	<div class="card-header">

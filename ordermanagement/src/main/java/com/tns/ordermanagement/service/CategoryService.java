@@ -1,4 +1,4 @@
-package com.tns.ordermanagement.service.admin;
+package com.tns.ordermanagement.service;
 
 import java.util.List;
 
@@ -8,7 +8,7 @@ import com.tns.ordermanagement.controller.admin.dto.CategoryDto;
 import com.tns.ordermanagement.controller.admin.dto.NewCategoryForm;
 import com.tns.ordermanagement.exception.AppBusinessException;
 import com.tns.ordermanagement.model.entity.Category;
-import com.tns.ordermanagement.model.repo.admin.CategoryRepo;
+import com.tns.ordermanagement.model.repo.CategoryRepo;
 
 import lombok.RequiredArgsConstructor;
 

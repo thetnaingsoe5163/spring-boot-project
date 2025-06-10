@@ -1,4 +1,4 @@
-package com.tns.ordermanagement.embeddable;
+package com.tns.ordermanagement.model.entity.embeddable;
 
 import java.io.Serializable;
 import java.util.UUID;

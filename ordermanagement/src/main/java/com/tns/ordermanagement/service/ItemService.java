@@ -1,4 +1,4 @@
-package com.tns.ordermanagement.service.admin;
+package com.tns.ordermanagement.service;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -13,8 +13,8 @@ import com.tns.ordermanagement.controller.admin.dto.AddItemForm;
 import com.tns.ordermanagement.controller.commondto.ItemDto;
 import com.tns.ordermanagement.exception.AppBusinessException;
 import com.tns.ordermanagement.model.entity.Item;
-import com.tns.ordermanagement.model.repo.admin.CategoryRepo;
-import com.tns.ordermanagement.model.repo.admin.ItemRepo;
+import com.tns.ordermanagement.model.repo.CategoryRepo;
+import com.tns.ordermanagement.model.repo.ItemRepo;
 import com.tns.ordermanagement.utils.utilityclass.SafeClass;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -37,7 +37,7 @@ public class ItemService {
 		item.setDescription(form.getDescription());
 		item.setIngredients(form.getIngredients());
 
-		if (form.getImageFile() != null) {
+		if (form.getImageFile() != null && !form.getImageFile().isEmpty()) {
 			var fileName = getValidFileName(form.getImageFile(), form.getEnglishName());
 			var filePath = request.getServletContext().getRealPath("/resources/images/items");
 

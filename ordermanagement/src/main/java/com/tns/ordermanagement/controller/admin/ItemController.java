@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.tns.ordermanagement.controller.admin.dto.AddItemForm;
 import com.tns.ordermanagement.controller.admin.dto.NewCategoryForm;
-import com.tns.ordermanagement.service.admin.CategoryService;
-import com.tns.ordermanagement.service.admin.ItemService;
+import com.tns.ordermanagement.service.CategoryService;
+import com.tns.ordermanagement.service.ItemService;
 
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;

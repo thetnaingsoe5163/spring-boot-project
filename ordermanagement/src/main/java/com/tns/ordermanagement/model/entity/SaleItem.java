@@ -1,6 +1,6 @@
 package com.tns.ordermanagement.model.entity;
 
-import com.tns.ordermanagement.embeddable.SaleItemPK;
+import com.tns.ordermanagement.model.entity.embeddable.SaleItemPK;
 
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;

@@ -1,9 +1,8 @@
-package com.tns.ordermanagement.model.repo.admin;
+package com.tns.ordermanagement.model.repo;
 
 import java.util.Optional;
 
 import com.tns.ordermanagement.model.entity.Category;
-import com.tns.ordermanagement.model.repo.BaseRepo;
 
 public interface CategoryRepo extends BaseRepo<Category, Integer> {
 

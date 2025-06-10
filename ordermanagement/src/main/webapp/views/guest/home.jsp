@@ -27,7 +27,7 @@
 				<c:forEach items="${items}" var="item">
 					<div class="col-lg-3 col-md-4 col-sm-6 mb-3">
 						<app:item-menu-card 
-							imagePath="${root}/resources/images/Nan_Gyi_Thoke.jpg"
+							imagePath="${root}/resources/images/items/${item.image()}"
 							id="${item.id()}" categoryId="${item.categoryId()}" categoryName="${item.categoryName()}" 
 							englishName="${item.englishName()}" burmeseName="${item.burmeseName()}" 
 							description="${item.description()}" ingredients="${item.ingredients()}" />
@@ -48,8 +48,7 @@
 					<div class="row">
 						<div class="col-6">
 							<figure class="figure">
-								<img data-image="${root}/resources/images/Ohn_No_Khao_Swe.jpg" 
-									src="${root}/resources/images/Ohn_No_Khao_Swe.jpg" alt="${root}/resources/images/Ohn_No_Khao_Swe.jpg" class="figure-img img-fluid rounded" />							
+								<img id="modal-img" class="figure-img img-fluid rounded" />							
 							</figure>
 						</div>
 						<div class="col-6">
@@ -59,9 +58,7 @@
 										<div class="col-4">
 											English Name
 										</div>
-										<div id="modal-english-name" class="col-auto">
-											Mohnga
-										</div>
+										<div id="modal-english-name" class="col-auto"></div>
 									</div>
 								</li>							
 								<li class="list-group-item">
@@ -69,17 +66,13 @@
 										<div class="col-4">
 											Burmese Name
 										</div>
-										<div class="col-auto" id="modal-burmese-name">
-											မုန့်ဟင်းခါး
-										</div>
+										<div class="col-auto" id="modal-burmese-name"></div>
 									</div>
 								</li>
 							</ul>					
 						</div>
 					</div>
-					<p id="modal-description">
-						Burmese traditional noodle salad with chicken and chili sauces
-					</p>
+					<p id="modal-description"></p>
 					<div class="card mt-2">
 						<div class="card-header">
 							<h5 class="card-title">Main Ingredients</h5>						
