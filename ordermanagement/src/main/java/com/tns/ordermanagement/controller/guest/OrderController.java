@@ -8,10 +8,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.tns.ordermanagement.controller.guest.dto.OrderForm;
 import com.tns.ordermanagement.controller.guest.dto.OrderItem;
+import com.tns.ordermanagement.service.OrderNotificationService;
 import com.tns.ordermanagement.service.SaleService;
 
 import lombok.RequiredArgsConstructor;
@@ -23,19 +25,25 @@ import lombok.RequiredArgsConstructor;
 public class OrderController {
 
 	private final SaleService saleService;
+	private final OrderNotificationService orderNotiService;
 	
 	@PostMapping
 	String submitOrder(@ModelAttribute("orderForm") OrderForm form) {
-		saleService.submit(form);
+		var id = saleService.submit(form);
+		var item = saleService.findSaleById(id);
+		orderNotiService.notifyNewOrder(item);
 		form.clear();
 		return "redirect:/";
 	}
 	
 	@PostMapping("add")
-	String addItem(@ModelAttribute("orderItem") OrderItem item, @ModelAttribute("orderForm") OrderForm form) {
+	@ResponseBody
+	Integer addItem(
+			@ModelAttribute("orderItem") OrderItem item, 
+			@ModelAttribute("orderForm") OrderForm form) {
+		
 		form.add(item);
-		System.out.println(form);
-		return "redirect:/";
+		return form.getTotalQuantity();
 	}
 	
 	@PostMapping("remove")

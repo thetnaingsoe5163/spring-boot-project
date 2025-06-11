@@ -91,7 +91,7 @@
 						</div>
 					</div>
 										
-					<form action="${root}/guest/order/add" method="post" class="mt-3">
+					<form action="${root}/guest/order/add" method="post" id="modalForm" class="mt-3">
 						<input type="hidden" name="itemId" id="id"/>
 						<input type="hidden" name="categoryId" id="categoryId" />
 						<input type="hidden" name="quantity" id="hiddenQuantity" value="1" />
@@ -113,7 +113,7 @@
 	  						<textarea name="details" class="form-control" placeholder="Tell chef order details" id="floatingTextarea"></textarea>
 	  						<label for="floatingTextarea">Order Details</label>
 						</div>
-						<button type="submit" class="btn btn-primary mt-3">
+						<button id="modalFormBtn" type="button" class="btn btn-primary mt-3">
 							<i class="bi bi-cart-plus"></i> Add to cart
 						</button>
 					</form>

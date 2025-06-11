@@ -9,6 +9,16 @@ import lombok.Data;
 public class OrderForm {
 
 	private List<OrderItem> items = new ArrayList<>();
+	
+	public OrderForm clone() {
+		var list = new ArrayList<OrderItem>();
+		for(var i : items) {
+			list.add(i.clone());
+		}
+		var newForm = new OrderForm();
+		newForm.setItems(list);
+		return newForm;
+	}
 
 	public void add(OrderItem item) {
 		var index = index(item.getItemId());
