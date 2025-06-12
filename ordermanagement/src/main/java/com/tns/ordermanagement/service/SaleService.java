@@ -6,6 +6,7 @@ import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 
+import com.tns.ordermanagement.controller.admin.dto.OrderSubmitForm;
 import com.tns.ordermanagement.controller.admin.dto.SaleDto;
 import com.tns.ordermanagement.controller.admin.dto.SaleItemDto;
 import com.tns.ordermanagement.controller.guest.dto.OrderForm;
@@ -82,5 +83,35 @@ public class SaleService {
 			s.setStatus(Status.Approved);
 			saleRepo.save(s);
 		}, () -> new AppBusinessException("Invalid ID"));
+	}
+	
+	public void approveOrder(OrderSubmitForm form) {
+		var sale = safeCall(saleRepo.findById(form.getId()), "Sale ID", form.getId());
+		
+		var items = form.getOrderItems();
+		
+		if(items == null || items.isEmpty()) {
+			saleRepo.deleteById(sale.getId());
+		}
+		
+		for(var i : items) {
+			
+			var pk = new SaleItemPK();
+			pk.setSaleId(sale.getId());
+			pk.setItemId(i.getItemId());
+			var saleItem = safeCall(saleItemRepo.findById(pk), "Sale Item ID", pk);
+			
+			if(i.isDeleted()) {
+				saleItemRepo.deleteById(pk);
+				continue;
+			}
+			
+			saleItem.setSalePrice(i.getSalePrice());
+			saleItem.setQuantity(i.getQuantity());
+			saleItemRepo.save(saleItem);
+		}
+		
+		sale.setStatus(Status.Approved);
+		saleRepo.save(sale);
 	}
 }

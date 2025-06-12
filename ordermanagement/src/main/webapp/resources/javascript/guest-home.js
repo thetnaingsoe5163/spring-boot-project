@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
 					if (badge) {
 						badge.innerText = data
 					}
-					
+
 					console.log('here')
 					modal.hide()
 				})
@@ -58,6 +58,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
 		}
 
+		const clearModal = () => {
+			const spanQuantity = document.getElementById('spanQuantity')
+			const textArea = document.getElementById('floatingTextarea')
+			
+			if(spanQuantity && textArea) {
+				spanQuantity.innerText = 1
+				textArea.value = ''
+			}
+		}
+
 		menuItems.forEach(item => {
 			item.addEventListener('click', (e) => {
 				const card = e.currentTarget
@@ -74,6 +84,8 @@ document.addEventListener('DOMContentLoaded', () => {
 				const hiddenEngName = document.getElementById('hiddenEnglishName')
 				const hiddenBurName = document.getElementById('hiddenBurmeseName')
 				const hiddenUnitPrice = document.getElementById('hiddenUnitPrice')
+				
+				clearModal()
 
 				if (engName && burName && description
 					&& ingredients && img && id && unitPrice

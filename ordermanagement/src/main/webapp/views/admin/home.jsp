@@ -26,7 +26,7 @@
 								<a href="${root}/admin/order/details/${sale.id()}" class="btn btn-outline-info">
 									<i class="bi bi-info-circle-fill"></i> Details
 								</a>
-								<a href="${root}/admin/order/approve/${sale.id()}" class="btn btn-outline-success">
+								<a href="${root}/admin/order/immediate-approve/${sale.id()}" class="btn btn-outline-success">
 									<i class="bi bi-check2"></i> Approve
 								</a>								
 							</div>
