@@ -2,9 +2,12 @@ package com.tns.ordermanagement.controller.admin.dto;
 
 import java.util.UUID;
 
+import com.tns.ordermanagement.utils.validator.ModificationReasonCrossValidator;
+
 import lombok.Data;
 
 @Data
+@ModificationReasonCrossValidator
 public class OrderSubmitItem {
 	
 	private UUID saleId;

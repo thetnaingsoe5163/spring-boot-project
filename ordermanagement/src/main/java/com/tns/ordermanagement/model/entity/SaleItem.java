@@ -31,4 +31,7 @@ public class SaleItem {
 	
 	private int quantity;
 	private int salePrice;
+	
+	private boolean modified;
+	private String reason;
 }

@@ -5,10 +5,10 @@
 
 <app:admin-layout>
 	<span class="d-none" id="context-path">${pageContext.request.contextPath}</span>
-	<div class="container">
-		<h1>This is admin page</h1>
+	<div class="container mt-3">
+		<h1>Order Requests</h1>
 		
-		<table class="table table-striped table-hover">
+		<table class="table table-striped table-hover mt-3">
 			<thead>
 				<tr>
 					<th>ID</th>

@@ -22,14 +22,13 @@ public class BaseRepoImpl<T, ID> extends SimpleJpaRepository<T, ID> implements B
 
 	@Override
 	public <R> List<R> search(Function<CriteriaBuilder, CriteriaQuery<R>> queryFunc) {
-		// TODO Auto-generated method stub
-		return null;
+		return em.createQuery(queryFunc.apply(em.getCriteriaBuilder())).getResultList();
 	}
 
 	@Override
 	public <R> Optional<R> searchOne(Function<CriteriaBuilder, CriteriaQuery<R>> queryFunc) {
-		// TODO Auto-generated method stub
-		return Optional.empty();
+		return em.createQuery(queryFunc.apply(em.getCriteriaBuilder()))
+				.getResultList().stream().findAny();
 	}
 
 	

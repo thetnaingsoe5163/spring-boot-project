@@ -25,7 +25,16 @@
 				<i class="bi bi-fork-knife"></i> Restaurant 
 			</a>
 			<div class="d-flex align-items-center">
-				<a href="${root}/guest/order/details" class="btn position-relative me-4"> 
+				<a href="${root}/guest/order/history" class="btn position-relative me-4"> 
+					History
+					<i class="bi bi-receipt-cutoff"></i>
+					<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill text-bg-danger">
+	    				${transactions eq null or transactions.ids.isEmpty() ? '0' : transactions.ids.size()}
+	    				<span class="visually-hidden">Items in the cart</span>
+	  				</span>
+				</a>			
+				<a href="${root}/guest/order/details" class="btn position-relative me-4">
+					Order 
 					<i class="bi bi-cart3"></i>
 					<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info" id="quantityBadge">
 	    				${orderForm eq null ? '0' : orderForm.getTotalQuantity()}

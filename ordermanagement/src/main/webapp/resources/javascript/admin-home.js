@@ -24,7 +24,7 @@ function addToTable(order) {
 				<a href="${contextPath}/admin/order/details/${order.id}" class="btn btn-outline-info">
 					<i class="bi bi-info-circle-fill"></i> Details
 				</a>
-				<a href="${contextPath}/admin/order/approve/${order.id}" class="btn btn-outline-success">
+				<a href="${contextPath}/admin/order/immediate-approve/${order.id}" class="btn btn-outline-success">
 					<i class="bi bi-check2"></i> Approve
 				</a>								
 			</div>

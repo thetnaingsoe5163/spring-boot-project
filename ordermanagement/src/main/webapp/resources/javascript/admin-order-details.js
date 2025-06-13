@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			let quantity = document.getElementById(`quantity${index}`).value
 
 			if (quantity < 1) {
-				quantity = 1
+				quantity = 0
 				document.getElementById(`quantity${index}`).value = quantity
 			}
 
@@ -58,7 +58,6 @@ document.addEventListener('DOMContentLoaded', () => {
 				reason.disabled = false
 				reason.required = true
 				document.getElementById(`modified${index}`).value = 'true'
-
 				setTotalAmount(index)
 			}
 
@@ -113,8 +112,12 @@ document.addEventListener('DOMContentLoaded', () => {
 				reason.disabled = false
 				reason.required = true
 				document.getElementById(`modified${index}`).value = 'true'
-
 				setTotalAmount(index)
+
+				if (value === 0) {
+					reason.disabled = true
+					reason.required = false
+				}
 			}
 
 			if (value === originalValue[key] && price === originalValue[`price${index}`]) {

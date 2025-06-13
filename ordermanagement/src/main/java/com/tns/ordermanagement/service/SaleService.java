@@ -90,8 +90,10 @@ public class SaleService {
 		
 		var items = form.getOrderItems();
 		
-		if(items == null || items.isEmpty()) {
-			saleRepo.deleteById(sale.getId());
+		if(allDeleted(form)) {
+			deleteItems(sale);
+			saleRepo.delete(sale);
+			return;
 		}
 		
 		for(var i : items) {
@@ -106,12 +108,24 @@ public class SaleService {
 				continue;
 			}
 			
-			saleItem.setSalePrice(i.getSalePrice());
-			saleItem.setQuantity(i.getQuantity());
+			if(i.isModified()) {
+				saleItem.setSalePrice(i.getSalePrice());
+				saleItem.setQuantity(i.getQuantity());
+				saleItem.setModified(true);
+				saleItem.setReason(i.getReason());
+			}
 			saleItemRepo.save(saleItem);
 		}
 		
 		sale.setStatus(Status.Approved);
 		saleRepo.save(sale);
+	}
+	
+	private boolean allDeleted(OrderSubmitForm form) {
+		return form.getOrderItems().stream().filter(i -> !i.isDeleted()).count() == 0;
+	}
+	
+	private void deleteItems(Sale sale) {
+		saleItemRepo.deleteAll(sale.getSaleItems());
 	}
 }

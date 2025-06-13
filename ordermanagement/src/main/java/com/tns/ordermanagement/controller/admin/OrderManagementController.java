@@ -38,14 +38,15 @@ public class OrderManagementController {
 	
 	@GetMapping("immediate-approve/{id}")
 	String orderApproveAll(@PathVariable("id") UUID id) {
+		System.out.println(id);
+		
 		saleService.approveOrder(id);
 		return "redirect:/admin";
 	}
 	
 	@PostMapping("approve")
 	String orderApprove(@ModelAttribute("form") OrderSubmitForm form) {
-		System.out.println(form);
-//		saleService.approveOrder(form);
+		saleService.approveOrder(form);
 		return "redirect:/admin";
 	}
 	
