@@ -25,6 +25,9 @@
 					data-remove="${root}/guest/order/remove"
 					data-save="${root}/guest/order"
 					action="${root}/guest/order" method="post" id="orderDetailsForm">
+					<input type="hidden" name="tableNumber" value="${tableNumber}" />
+					<input id="sessionKey" type="hidden" name="sessionId" value="${tableNumber}" />
+					
 					<c:forEach items="${form.items}" var="item" varStatus="status">
 						<tr id="${status.index}">
 							<td>${item.englishName} (${item.burmeseName})</td>
@@ -57,13 +60,13 @@
 			</tbody>
 			<tfoot>
 				<tr class="table-group-divider">
-					<td colspan="3">Total Amount</td>
+					<td colspan="4">Total Amount</td>
 					<td class="text-end" id="allTotalPrice">6000 MMK</td>
 					<td></td>
 				</tr>
 				<tr>
 					<td colspan="3"></td>
-					<td colspan="2">
+					<td colspan="3">
 						<button form="orderDetailsForm" type="submit" class="btn btn-primary w-100">
 							Order Now
 						</button>

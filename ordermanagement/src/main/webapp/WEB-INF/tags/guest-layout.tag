@@ -33,7 +33,7 @@
 	    				<span class="visually-hidden">Items in the cart</span>
 	  				</span>
 				</a>			
-				<a href="${root}/guest/order/details" class="btn position-relative me-4">
+				<a href="${root}/guest/order/details/${tableNumber}" class="btn position-relative me-4">
 					Order 
 					<i class="bi bi-cart3"></i>
 					<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info" id="quantityBadge">

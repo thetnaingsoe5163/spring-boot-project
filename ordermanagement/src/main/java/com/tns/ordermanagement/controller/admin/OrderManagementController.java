@@ -10,9 +10,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.tns.ordermanagement.controller.admin.dto.OrderSubmitForm;
-import com.tns.ordermanagement.service.SaleService;
+import com.tns.ordermanagement.service.OrderTransactionService;
+import com.tns.ordermanagement.service.ReceiptGeneratorService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -21,14 +23,20 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class OrderManagementController {
 
-	private final SaleService saleService;
+	private final OrderTransactionService orderTrxService;
+	private final ReceiptGeneratorService receiptGenerator;
 	
 	@GetMapping("details/{id}")
-	String details(@PathVariable UUID id, ModelMap model) {
-		var items = saleService.findItemsBySaleId(id);
+	String details(@PathVariable UUID id, ModelMap model, RedirectAttributes attr) {
+		var items = orderTrxService.findIncomingItemsByOrderId(id);
 		
 		var orderItems = new ArrayList<>(items.stream().map(i -> i.convertToOrderItem()).toList());
 		var orderForm = new OrderSubmitForm();
+		
+		if(orderItems.isEmpty()) {
+			attr.addFlashAttribute("message", "No order from %s currently.".formatted(id));
+			return "redirect:/admin";
+		}
 		orderForm.setId(orderItems.get(0).getSaleId());
 		orderForm.setOrderItems(orderItems);
 		
@@ -37,21 +45,29 @@ public class OrderManagementController {
 	}
 	
 	@GetMapping("immediate-approve/{id}")
-	String orderApproveAll(@PathVariable("id") UUID id) {
-		System.out.println(id);
-		
-		saleService.approveOrder(id);
+	String immediatelyApprove(@PathVariable("id") UUID id, RedirectAttributes attr) {
+		orderTrxService.approveWithoutChecking(id);
+		attr.addFlashAttribute("message", "Order %s is approved.".formatted(id));
 		return "redirect:/admin";
 	}
-	
+//	
 	@PostMapping("approve")
 	String orderApprove(@ModelAttribute("form") OrderSubmitForm form) {
-		saleService.approveOrder(form);
+		System.out.println(form);
+		orderTrxService.approve(form);
 		return "redirect:/admin";
 	}
 	
-	@ModelAttribute("form")
-	OrderSubmitForm getForm() {
-		return new OrderSubmitForm();
+	@GetMapping("pay/{id}")
+	String payBill(@PathVariable UUID id, ModelMap model) {
+		var receipt = orderTrxService.payBill(id);
+		receiptGenerator.generateReceipt(receipt);
+		model.addAttribute("receipt", receipt);
+		return "admin/payment";
 	}
+//	
+//	@ModelAttribute("form")
+//	OrderSubmitForm getForm() {
+//		return new OrderSubmitForm();
+//	}
 }

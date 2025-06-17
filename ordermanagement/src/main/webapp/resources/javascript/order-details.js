@@ -80,4 +80,8 @@ document.addEventListener('DOMContentLoaded', () => {
 		
 		setAllTotalPrice()
 	}
+	
+	form.addEventListener('submit', () => {
+		document.getElementById('sessionKey').value = localStorage.getItem('customerSessionId')
+	})
 })

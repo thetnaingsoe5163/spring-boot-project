@@ -8,25 +8,36 @@
 	<div class="container mt-3">
 		<h1>Order Requests</h1>
 		
-		<table class="table table-striped table-hover mt-3">
+		<c:if test="${not empty message}">
+			<div class="alert alert-info">
+				<i class="bi bi-info-circle"></i> ${message}
+			</div>
+		</c:if>
+		
+		<table id="inprogress" class="table table-striped table-hover mt-3">
 			<thead>
 				<tr>
+					<th>Table Number</th>
 					<th>ID</th>
 					<th>Status</th>
 					<th></th>
 				</tr>
 			</thead>
 			<tbody id="order-list">
-				<c:forEach items="${sales}" var="sale">
-					<tr>
-						<td>${sale.id()}</td>
-						<td>${sale.status()}</td>
+				<c:forEach items="${orders}" var="order">
+					<tr id="${order.id()}">
+						<td>${order.tableNumber()}</td>
+						<td>${order.id()}</td>
+						<td>${order.status()}</td>
 						<td>
 							<div class="d-flex gap-3 justify-content-end" role="group">
-								<a href="${root}/admin/order/details/${sale.id()}" class="btn btn-outline-info">
+								<a href="${root}/admin/order/pay/${order.id()}" class="btn btn-outline-dark">
+									Pay Bill
+								</a>
+								<a href="${root}/admin/order/details/${order.id()}" class="btn btn-outline-info">
 									<i class="bi bi-info-circle-fill"></i> Details
 								</a>
-								<a href="${root}/admin/order/immediate-approve/${sale.id()}" class="btn btn-outline-success">
+								<a href="${root}/admin/order/immediate-approve/${order.id()}" class="btn btn-outline-success">
 									<i class="bi bi-check2"></i> Approve
 								</a>								
 							</div>

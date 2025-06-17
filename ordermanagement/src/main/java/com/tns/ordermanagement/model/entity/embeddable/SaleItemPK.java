@@ -12,6 +12,6 @@ public class SaleItemPK implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
-	private UUID saleId;
+	private UUID transaction;
 	private int itemId;
 }

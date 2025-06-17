@@ -16,13 +16,13 @@ public record SaleItemDto(
 
 	public SaleItemDto(SaleItem item) {
 		this(	
-				item.getPk().getSaleId(),
+				item.getPk().getTransaction(),
 				item.getPk().getItemId(),
 				item.getItem().getEnglishName(),
 				item.getItem().getCategory().getName(),
 				item.getDetails(),
 				item.getSalePrice(),
-				item.getQuantity());
+				item.getLastQuantity());
 	}
 	
 	public OrderSubmitItem convertToOrderItem() {

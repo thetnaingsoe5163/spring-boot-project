@@ -1,4 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
+	
+	let customerSessionId = localStorage.getItem("customerSessionId")
+	
+	if(!customerSessionId) {
+		customerSessionId = crypto.randomUUID()
+		localStorage.setItem("customerSessionId", customerSessionId)
+	}
 
 	const menuItems = Array.from(document.getElementsByClassName('card'))
 	const modal = new bootstrap.Modal('#orderModal')
@@ -12,7 +19,12 @@ document.addEventListener('DOMContentLoaded', () => {
 		})
 
 		modalFormBtn.addEventListener('click', () => {
+			
+			modalForm.addinnerHTML = `
+			<input type="hidden" name="sessionId" value="${customerSessionId}"></input>
+			`
 			const formData = new FormData(modalForm)
+			
 
 			fetch(modalForm.getAttribute('action'), {
 				method: 'POST',

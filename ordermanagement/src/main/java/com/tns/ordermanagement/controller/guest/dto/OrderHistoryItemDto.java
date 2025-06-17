@@ -15,7 +15,7 @@ public record OrderHistoryItemDto(
 				item.getItem().getEnglishName(),
 				item.getItem().getBurmeseName(),
 				item.getSalePrice(),
-				item.getQuantity(),
+				item.getLastQuantity(),
 				item.getDetails());
 	}
 	

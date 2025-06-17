@@ -33,58 +33,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	setAllTotalAmount()
 
-	Array.from(document.getElementsByClassName('price')).forEach(i => {
-		i.addEventListener('change', (e) => {
-
-			const key = e.currentTarget.getAttribute('id')
-			let value = e.currentTarget.value
-			const index = key.charAt(key.length - 1)
-
-			let quantity = document.getElementById(`quantity${index}`).value
-
-			if (quantity < 1) {
-				quantity = 0
-				document.getElementById(`quantity${index}`).value = quantity
-			}
-
-			if (value < 0) {
-				value = 0
-				e.currentTarget.value = value
-			}
-
-			const reason = document.getElementById(`reason${index}`)
-
-			if (value !== originalValue[key] || quantity !== originalValue[`quantity${index}`]) {
-				reason.disabled = false
-				reason.required = true
-				document.getElementById(`modified${index}`).value = 'true'
-				setTotalAmount(index)
-			}
-
-			if (value === originalValue[key] && quantity === originalValue[`quantity${index}`]) {
-				reason.disabled = true
-				reason.required = false
-				document.getElementById(`modified${index}`).value = 'false'
-
-				setTotalAmount(index)
-			}
-
-			setAllTotalAmount()
-		})
-	})
-
 	Array.from(document.getElementsByClassName('quantity')).forEach(i => {
 		i.addEventListener('change', (e) => {
 			const key = e.currentTarget.getAttribute('id')
 			let value = e.currentTarget.value
 			const index = key.charAt(key.length - 1)
-
-			let price = document.getElementById(`price${index}`).value
-
-			if (price < 0) {
-				price = 0
-				document.getElementById(`price${index}`).value = value
-			}
 
 			if (value > 0) {
 				document.getElementById(`deleted${index}`).value = 'false'
@@ -108,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 			const reason = document.getElementById(`reason${index}`)
 
-			if (value !== originalValue[key] || price !== originalValue[`price${index}`]) {
+			if (value !== originalValue[key]) {
 				reason.disabled = false
 				reason.required = true
 				document.getElementById(`modified${index}`).value = 'true'
@@ -120,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				}
 			}
 
-			if (value === originalValue[key] && price === originalValue[`price${index}`]) {
+			if (value === originalValue[key]) {
 				reason.disabled = true
 				reason.required = false
 				document.getElementById(`modified${index}`).value = 'false'

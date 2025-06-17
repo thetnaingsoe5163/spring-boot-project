@@ -18,9 +18,9 @@ public class SaleItem {
 	@EmbeddedId
 	private SaleItemPK pk;
 	
-	@MapsId("saleId")
+	@MapsId("transaction")
 	@ManyToOne
-	private Sale sale;
+	private OrderTransaction transaction;
 	
 	@MapsId("itemId")
 	@ManyToOne
@@ -29,9 +29,10 @@ public class SaleItem {
 	@Column(nullable = true)
 	private String details;
 	
-	private int quantity;
+	private int previousQuantity = 0;
+	private int lastQuantity = 0;
 	private int salePrice;
 	
-	private boolean modified;
+	private boolean modified = false;
 	private String reason;
 }

@@ -5,8 +5,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.tns.ordermanagement.model.entity.constant.Status;
-import com.tns.ordermanagement.service.SaleService;
+import com.tns.ordermanagement.model.entity.constant.OrderTransactionStatus;
+import com.tns.ordermanagement.service.OrderTransactionService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -15,12 +15,12 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class Home {
 	
-	private final SaleService saleService;
+	private final OrderTransactionService trxService;
 	
 	@GetMapping
 	String index(ModelMap model) {
-		var sales = saleService.findByStatus(Status.Pending);
-		model.addAttribute("sales", sales);
+		var orders = trxService.findByStatus(OrderTransactionStatus.INPROGRESS);
+		model.addAttribute("orders", orders);
 		return "admin/home";
 	}
 }

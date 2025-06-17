@@ -36,14 +36,13 @@
 					<input type="hidden" name="orderItems[${status.index}].details" value="${item.details}" />
 					<input type="hidden" name="orderItems[${status.index}].deleted" value="${item.deleted}" id="deleted${status.index}" />
 					<input type="hidden" name="orderItems[${status.index}].modified" value="${item.modified}" id="modified${status.index}" />
+					<input id="price${status.index}" type="hidden" name="orderItems[${status.index}].salePrice"  value="${item.salePrice}" />
 					
 					<tr>
 						<td class="td${status.index}">${item.name}</td>
 						<td class="td${status.index}">${item.category}</td>
 						<td class="td${status.index}">${item.details}</td>
-						<td class="td${status.index}">
-							<input id="price${status.index}" class="form-control price" type="number" name="orderItems[${status.index}].salePrice" value="${item.salePrice}" />
-						</td>
+						<td class="td${status.index}">${item.salePrice}</td>
 						<td class="td${status.index}">
 							<input id="quantity${status.index}" class="form-control quantity" type="number" name="orderItems[${status.index}].quantity" value="${item.quantity}" />
 						</td>

@@ -1,11 +1,9 @@
 package com.tns.ordermanagement.model.entity;
 
 import java.util.List;
-import java.util.UUID;
 
-import com.tns.ordermanagement.model.entity.constant.Status;
+import com.tns.ordermanagement.model.entity.constant.TableStatus;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -19,16 +17,17 @@ import lombok.EqualsAndHashCode;
 @Entity
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class Sale extends AbstractEntity {
-	
+public class RestaurantTable extends AbstractEntity {
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.UUID)
-	private UUID id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
 	
-	@OneToMany(mappedBy = "sale")
-	private List<SaleItem> saleItems;
+	private int tableNumber;
 	
-	@Column(nullable = false)
+	@OneToMany(mappedBy = "restaurantTable")
+	private List<OrderTransaction> transactions;
+	
 	@Enumerated(EnumType.STRING)
-	private Status status = Status.Pending;
+	private TableStatus status;
 }
