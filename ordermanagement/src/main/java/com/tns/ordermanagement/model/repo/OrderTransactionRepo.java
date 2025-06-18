@@ -14,4 +14,6 @@ public interface OrderTransactionRepo extends BaseRepo<OrderTransaction, UUID> {
 	Optional<OrderTransaction> findByRestaurantTableIdAndCustomerSessionIdAndStatus(int tableId, UUID sessionId, OrderTransactionStatus inprogress);
 
 	List<OrderTransaction> findByStatus(OrderTransactionStatus status);
+
+	Optional<OrderTransaction> findOneByCustomerSessionIdAndStatus(UUID id, OrderTransactionStatus inprogress);
 }

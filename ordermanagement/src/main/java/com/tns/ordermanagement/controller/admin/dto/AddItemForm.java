@@ -5,19 +5,26 @@ import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data
 public class AddItemForm {
 
-	@NotNull(message = "Category must not be null.")
+	@NotNull(message = "Please choose category.")
 	private Integer category;
 	
+	@NotEmpty(message = "English name must not be empty.")
 	private String englishName;
+	
+	@NotEmpty(message = "Burmese name must not be empty.")
 	private String burmeseName;
+	
 	private String description;
-	private int unitPrice;
+	
+	@NotNull(message = "Unit price must be set.")
+	private Integer unitPrice;
 	
 	private List<String> ingredients = new ArrayList<>();
 	private MultipartFile imageFile;

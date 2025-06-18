@@ -29,6 +29,7 @@
 								<sf:option value="${category.id()}">${category.name()}</sf:option>							
 							</c:forEach>
 						</sf:select>
+						<sf:errors path="category" cssClass="text-danger"></sf:errors>
 					</div>
 				</div>
 				<div class="row mt-3">
@@ -37,6 +38,7 @@
 					</div>
 					<div class="col-8">
 						<sf:input path="englishName" type="text" class="form-control" />
+						<sf:errors path="englishName" cssClass="text-danger"></sf:errors>
 					</div>
 				</div>
 				<div class="row mt-3">
@@ -45,6 +47,7 @@
 					</div>
 					<div class="col-8">
 						<sf:input path="burmeseName" type="text" class="form-control" />
+						<sf:errors path="burmeseName" cssClass="text-danger"></sf:errors>
 					</div>
 				</div>
 				<div class="row mt-3">
@@ -53,6 +56,7 @@
 					</div>
 					<div class="col-8">
 						<sf:input path="unitPrice" type="number" class="form-control" />
+						<sf:errors path="unitPrice" cssClass="text-danger"></sf:errors>
 					</div>
 				</div>
 				<div class="row mt-3">

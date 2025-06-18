@@ -21,18 +21,27 @@
 	
 	<nav class="navbar navbar-expand shadow">
 		<div class="container">
-			<a href="${root}/" class="navbar-brand">
+			<a href="${root}/${tableNumber}" class="navbar-brand">
 				<i class="bi bi-fork-knife"></i> Restaurant 
 			</a>
 			<div class="d-flex align-items-center">
-				<a href="${root}/guest/order/history" class="btn position-relative me-4"> 
-					History
-					<i class="bi bi-receipt-cutoff"></i>
-					<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill text-bg-danger">
-	    				${transactions eq null or transactions.ids.isEmpty() ? '0' : transactions.ids.size()}
-	    				<span class="visually-hidden">Items in the cart</span>
-	  				</span>
-				</a>			
+				<c:choose>
+					<c:when test="${history eq null or history.items().isEmpty()}">
+						<a id="historyUrl" href="${root}/guest/order/history/${tableNumber}" class="btn position-relative me-4"> 
+							<i class="bi bi-receipt-cutoff"></i> History
+						</a>							
+					</c:when>
+					<c:otherwise>
+						<a id="historyUrl" href="${root}/guest/order/history/${tableNumber}" class="btn position-relative me-4"> 
+							History
+							<i class="bi bi-receipt-cutoff"></i>
+							<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill text-bg-danger">
+			    				${history eq null or history.items().isEmpty() ? '0' : history.items().size()}
+			    				<span class="visually-hidden">Items in the cart</span>
+			  				</span>
+						</a>								
+					</c:otherwise>
+				</c:choose>
 				<a href="${root}/guest/order/details/${tableNumber}" class="btn position-relative me-4">
 					Order 
 					<i class="bi bi-cart3"></i>
@@ -54,6 +63,8 @@
 	<div>
 		<jsp:doBody></jsp:doBody>
 	</div>
+	
+	<script type="text/javascript" src="${root}/resources/javascript/guest-history.js"></script>
 	
 </body>
 </html>

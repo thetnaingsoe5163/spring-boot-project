@@ -35,7 +35,10 @@ function addInProgressTable(order) {
 			</a>
 			<a href="${contextPath}/admin/order/immediate-approve/${order.id}" class="btn btn-outline-success">
 				<i class="bi bi-check2"></i> Approve
-			</a>								
+			</a>		
+			<a href="${contextPath}/admin/order/check/${order.id}" class="btn btn-link">
+				<i class="bi bi-info-circle"></i>
+			</a>														
 		</div>
 	</td>
 	`

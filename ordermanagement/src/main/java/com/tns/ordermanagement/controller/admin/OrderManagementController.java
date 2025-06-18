@@ -50,10 +50,17 @@ public class OrderManagementController {
 		attr.addFlashAttribute("message", "Order %s is approved.".formatted(id));
 		return "redirect:/admin";
 	}
+	
+	@GetMapping("check/{id}")
+	String checkOrder(@PathVariable UUID id, ModelMap model) {
+		var order = orderTrxService.findOrder(id);
+		model.put("order", order);
+		
+		return "admin/check-details";
+	}
 //	
 	@PostMapping("approve")
 	String orderApprove(@ModelAttribute("form") OrderSubmitForm form) {
-		System.out.println(form);
 		orderTrxService.approve(form);
 		return "redirect:/admin";
 	}
@@ -65,9 +72,4 @@ public class OrderManagementController {
 		model.addAttribute("receipt", receipt);
 		return "admin/payment";
 	}
-//	
-//	@ModelAttribute("form")
-//	OrderSubmitForm getForm() {
-//		return new OrderSubmitForm();
-//	}
 }

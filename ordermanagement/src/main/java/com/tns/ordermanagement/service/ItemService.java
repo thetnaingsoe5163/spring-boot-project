@@ -7,6 +7,7 @@ import java.nio.file.StandardCopyOption;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.tns.ordermanagement.controller.admin.dto.AddItemForm;
@@ -50,6 +51,7 @@ public class ItemService {
 
 	}
 	
+	@Transactional(readOnly = true)
 	public List<ItemDto> findAll() {
 		return itemRepo.findAll().stream().map(ItemDto::new).toList();
 	}
@@ -76,6 +78,7 @@ public class ItemService {
 		return "%d.%s".formatted(id, extension);
 	}
 
+	@Transactional(readOnly = true)
 	public List<ItemDto> findByCategoryId(int id) {
 		return itemRepo.findByCategory_Id(id).stream().map(ItemDto::new).toList();
 	}

@@ -9,11 +9,13 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.tns.ordermanagement.controller.admin.dto.OrderItemDetailDto;
 import com.tns.ordermanagement.controller.admin.dto.OrderSubmitForm;
 import com.tns.ordermanagement.controller.admin.dto.OrderTrxDto;
 import com.tns.ordermanagement.controller.admin.dto.SaleItemDto;
 import com.tns.ordermanagement.controller.commondto.Receipt;
 import com.tns.ordermanagement.controller.guest.dto.OrderForm;
+import com.tns.ordermanagement.controller.guest.dto.OrderHistoryDto;
 import com.tns.ordermanagement.exception.AppBusinessException;
 import com.tns.ordermanagement.model.entity.OrderTransaction;
 import com.tns.ordermanagement.model.entity.SaleItem;
@@ -124,10 +126,12 @@ public class OrderTransactionService {
 		return trxRepo.save(trx);
 	}
 
+	@Transactional(readOnly = true)
 	public List<OrderTrxDto> findByStatus(OrderTransactionStatus status) {
 		return trxRepo.findByStatus(status).stream().map(OrderTrxDto::new).toList();
 	}
 
+	@Transactional(readOnly = true)
 	public List<SaleItemDto> findIncomingItemsByOrderId(UUID id) {
 		var order = safeCall(trxRepo.findById(id), "Order ID", id);
 		return order.getItems().stream().filter(i -> i.getLastQuantity() != 0)
@@ -193,4 +197,22 @@ public class OrderTransactionService {
 		order.setEndedAt(LocalDateTime.now());
 		return Receipt.convert(order);
 	}
+
+	@Transactional(readOnly = true)
+	public OrderHistoryDto findActiveOrderHistory(UUID id) {
+		var order = trxRepo.findOneByCustomerSessionIdAndStatus(id, OrderTransactionStatus.INPROGRESS);
+		
+		if(order.isEmpty()) {
+			return null;
+		} else {
+			return OrderHistoryDto.convert(order.get());
+		}
+	}
+	
+	@Transactional(readOnly = true)
+	public List<OrderItemDetailDto> findOrder(UUID id) {
+		var order = safeCall(trxRepo.findById(id), "Order ID", id);
+		return order.getItems().stream().map(OrderItemDetailDto::new).toList();
+	}
+
 }

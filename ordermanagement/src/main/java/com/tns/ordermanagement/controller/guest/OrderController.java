@@ -1,6 +1,7 @@
 package com.tns.ordermanagement.controller.guest;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.tns.ordermanagement.controller.guest.dto.OrderForm;
 import com.tns.ordermanagement.controller.guest.dto.OrderItem;
@@ -33,16 +35,15 @@ public class OrderController {
 	String submitOrder(
 			@RequestParam int tableNumber,
 			@RequestParam String sessionId, 
-			@ModelAttribute("orderForm") OrderForm form) {		
+			@ModelAttribute("orderForm") OrderForm form,
+			RedirectAttributes attr) {		
 		
 		var trx = orderTrxService.submit(form, sessionId, tableNumber);
 		var trxDto = orderTrxService.convertOrderTrxDto(trx); 
 		System.out.println(trxDto);
 		orderNotiService.notifyNewOrder(trxDto);
 		form.clear();
-		System.out.println("Table Number: %d".formatted(tableNumber));
-		System.out.println("Session ID: %s%n".formatted(sessionId));
-		System.out.println(form);
+		
 		return "redirect:/%d".formatted(tableNumber);
 	}
 
@@ -69,15 +70,19 @@ public class OrderController {
 		return "guest/order-details";
 	}
 
-//	@GetMapping("history")
-//	String orderHistory(@ModelAttribute("transactions") Transaction transaction, ModelMap model) {
-//		if(transaction.getIds().size() != 0) {
-//			var history = saleItemService.findBySaleId(transaction.getIds());
-//			model.addAttribute("history", history);
-//			System.out.println(history);
-//		}
-//		return "guest/history";
-//	}
+	@GetMapping("history/{tableNumber}")
+	String orderHistory(
+			@RequestParam UUID id,
+			@PathVariable int tableNumber,
+			ModelMap model) {
+		
+		var orderHistory = orderTrxService.findActiveOrderHistory(id);
+		if(orderHistory == null) {
+			return "redirect:/%d".formatted(tableNumber);
+		}
+		model.addAttribute("history", orderHistory);
+		return "guest/history";
+	}
 
 	@ModelAttribute("orderForm")
 	OrderForm getOrderForm() {

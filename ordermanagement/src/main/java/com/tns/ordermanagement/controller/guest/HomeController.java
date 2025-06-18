@@ -33,14 +33,19 @@ public class HomeController {
 		return "guest/home";
 	}
 	
-	@GetMapping("items/{id}")
-	String itemsByCategory(ModelMap model, @PathVariable int id) {
+	@GetMapping("items/{tableNumber}/{id}")
+	String itemsByCategory(
+			ModelMap model,
+			@PathVariable int tableNumber,
+			@PathVariable int id) {
 		
 		var categories = categoryService.findAll();
 		var items = itemService.findByCategoryId(id);
 		
+		model.put("tableNumber", tableNumber);
 		model.put("categories", categories);
 		model.put("items", items);
+		
 		return "guest/home";
 	}
 }

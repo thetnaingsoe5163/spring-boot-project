@@ -3,17 +3,17 @@
 <%@ taglib prefix="app" tagdir="/WEB-INF/tags/" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<app:guest-layout>	
+<app:guest-layout>		
 	<div class="container">
 		<ul class="nav nav-underline justify-content-center">
 			<li class="nav-item">
-				<a href="${root}/" data-uri="${root}/" class="nav-link text-dark category-link">
+				<a href="${root}/${tableNumber}" data-uri="${root}/${tableNumber}" class="nav-link text-dark category-link">
 					All
 				</a>			
 			</li>
 			<c:forEach items="${categories}" var="category">
 				<li class="nav-item">
-					<a href="${root}/items/${category.id()}" data-uri="${root}/items/${category.id()}" class="nav-link text-dark category-link">
+					<a href="${root}/items/${tableNumber}/${category.id()}" data-uri="${root}/items/${category.id()}" class="nav-link text-dark category-link">
 						${category.name()}
 					</a>									
 				</li>
@@ -27,10 +27,10 @@
 				<c:forEach items="${items}" var="item">
 					<div class="col-lg-3 col-md-4 col-sm-6 mb-3">
 						<app:item-menu-card 
-							imagePath="${root}/resources/images/items/${item.image()}"
+							imagePath="${root}/resources/images/items/${item.image() eq null or item.image().isBlank() ? 'default-item.png' : item.image()}"
 							id="${item.id()}" categoryId="${item.categoryId()}" categoryName="${item.categoryName()}" 
 							englishName="${item.englishName()}" burmeseName="${item.burmeseName()}" unitPrice="${item.unitPrice()}"
-							description="${item.description()}" ingredients="${item.ingredients()}" />
+							description="${item.description() eq null or item.description().isBlank() ? 'No Description Currently' : item.description()}" ingredients="${item.ingredients()}" />
 					</div>				
 				</c:forEach>																		
 			</div>		

@@ -34,11 +34,14 @@
 								<a href="${root}/admin/order/pay/${order.id()}" class="btn btn-outline-dark">
 									Pay Bill
 								</a>
-								<a href="${root}/admin/order/details/${order.id()}" class="btn btn-outline-info">
-									<i class="bi bi-info-circle-fill"></i> Details
+								<a href="${root}/admin/order/details/${order.id()}" class="btn btn-outline-warning">
+									<i class="bi bi-wrench"></i> Modify
 								</a>
 								<a href="${root}/admin/order/immediate-approve/${order.id()}" class="btn btn-outline-success">
 									<i class="bi bi-check2"></i> Approve
+								</a>
+								<a href="${root}/admin/order/check/${order.id()}" class="btn btn-link">
+									<i class="bi bi-info-circle"></i>
 								</a>								
 							</div>
 						</td>
