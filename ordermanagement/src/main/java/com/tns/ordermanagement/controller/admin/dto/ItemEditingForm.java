@@ -7,11 +7,17 @@ import org.springframework.web.multipart.MultipartFile;
 
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
-public class AddItemForm {
-
+@AllArgsConstructor
+@NoArgsConstructor
+public class ItemEditingForm {
+	
+	private Integer itemId;
+	
 	@NotNull(message = "Please choose category.")
 	private Integer category;
 	
@@ -28,4 +34,7 @@ public class AddItemForm {
 	
 	private List<String> ingredients = new ArrayList<>();
 	private MultipartFile imageFile;
+	
+	private String imageName;
+
 }

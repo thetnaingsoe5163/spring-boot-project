@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.tns.ordermanagement.controller.admin.dto.AddItemForm;
+import com.tns.ordermanagement.controller.admin.dto.ItemEditingForm;
 import com.tns.ordermanagement.controller.admin.dto.NewCategoryForm;
 import com.tns.ordermanagement.controller.commondto.ItemDto;
 import com.tns.ordermanagement.service.CategoryService;
@@ -59,7 +59,7 @@ public class ItemController {
 	String save(
 			HttpServletRequest request,
 			ModelMap model,
-			@ModelAttribute("addItemForm") @Validated AddItemForm form,
+			@ModelAttribute("itemEditingForm") @Validated ItemEditingForm form,
 			BindingResult result) {
 		
 		if(result.hasErrors()) {
@@ -67,12 +67,19 @@ public class ItemController {
 			model.addAttribute("categories", categories);
 			return "admin/create-item";
 		}
+		
+		if(form.getItemId() != null) {
+			System.out.println(form);
+			itemService.update(form, request);
+			return "redirect:/admin/item/%d".formatted(form.getCategory());
+		} 
+		
 		itemService.insert(form, request);
 		return "redirect:/admin/item/new";
 	}
 	
-	@GetMapping("edit/{categoryId}")
-	String edit(ModelMap model, @PathVariable(required = true) int categoryId) {
+	@GetMapping("{categoryId}")
+	String itemsByCategory(ModelMap model, @PathVariable(required = true) int categoryId) {
 		var categories = categoryService.findAll();
 		model.addAttribute("categories", categories);
 		
@@ -88,9 +95,34 @@ public class ItemController {
 		return "admin/items-edition";
 	}
 	
-	@ModelAttribute("addItemForm")
-	AddItemForm addItemForm() {
-		return new AddItemForm();
+	@GetMapping("edit/{id}")
+	String editItem(
+			@ModelAttribute("itemEditingForm") ItemEditingForm form,
+			@PathVariable int id, ModelMap model) {
+		form = itemService.getEditFormById(id, form);
+		model.put("form", form);
+		var categories = categoryService.findAll();
+		model.addAttribute("categories", categories);
+		
+		return "admin/create-item";
+	}
+	
+	@GetMapping("delete/{id}")
+	String deleteItem(@PathVariable int id, HttpServletRequest request) {
+		itemService.deleteItemById(id, request);
+		return "redirect:/admin/item/0";
+	}
+	
+	@GetMapping("details/{id}")
+	String details(@PathVariable int id, ModelMap model) {
+		var item = itemService.findByItemId(id);
+		model.put("item", item);
+		return "admin/item-details";
+	}
+	
+	@ModelAttribute("itemEditingForm")
+	ItemEditingForm itemEditingForm() {
+		return new ItemEditingForm();
 	}
 	
 	private String getValidRequestPath(String rawRequestPath) {

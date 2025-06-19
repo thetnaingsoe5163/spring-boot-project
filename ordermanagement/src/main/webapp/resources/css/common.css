@@ -2,8 +2,9 @@
 	width: 100%;
 	height: 370px;
 }
+
 .fixed-img-card-size {
-	width: 100%; 
+	width: 100%;
 	height: 170px;
 }
 
@@ -17,4 +18,18 @@
 
 .b-and-w-theme-bg-1 {
 	background-color: #ff7a7a !important;
+}
+
+.item-card {
+	max-width: 600px;
+}
+
+.item-image {
+	height: 250px;
+	object-fit: cover;
+}
+
+.adjust-overflow {
+	max-height: 3.5rem;
+	overflow-y: auto;
 }

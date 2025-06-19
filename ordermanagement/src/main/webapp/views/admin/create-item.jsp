@@ -6,7 +6,7 @@
 
 <app:admin-layout>
 	<div class="container">
-		<sf:form action="${root}/admin/item" enctype="multipart/form-data" modelAttribute="addItemForm" method="post" 
+		<sf:form action="${root}/admin/item" enctype="multipart/form-data" modelAttribute="itemEditingForm" method="post" 
 			class="card mt-4 w-50" id="createItemForm">
 			<div class="card-header">
 				<div class="d-flex justify-content-between">
@@ -18,6 +18,7 @@
 
 			</div>
 			<div class="card-body">
+				<input type="hidden" name="itemId" value="${form.itemId}">
 				<div class="row">
 					<div class="col-4">
 						<label class="form-label">Category:</label>
@@ -26,7 +27,7 @@
 						<sf:select path="category" class="form-select">
 							<option value="">Select Category</option>
 							<c:forEach items="${categories}" var="category" >
-								<sf:option value="${category.id()}">${category.name()}</sf:option>							
+								<option ${form.category eq category.id() ? 'selected' : ''} value="${category.id()}">${category.name()}</option>							
 							</c:forEach>
 						</sf:select>
 						<sf:errors path="category" cssClass="text-danger"></sf:errors>
@@ -85,7 +86,19 @@
 							</div>
 							<div class="card-body">
 								<ul class="list-group list-group-flush" id="listGroup">
-								
+									<c:if test="${!form.ingredients.isEmpty()}">
+										<c:forEach items="${form.ingredients}" var="item" varStatus="status">
+											<li id="${status.index}" class="list-group-item">
+												<div class="input-group">
+													<input type="text" value="${item}" data-deleted="false" name="ingredients[${status.index}]" 
+														class="form-control" />
+													<button class="btn deleteBtn" id="map${status.index}">
+														<i class="bi bi-trash text-danger"></i>
+													</button>
+												</div>														
+											</li>									
+										</c:forEach>
+									</c:if>																		
 								</ul>
 							</div>
 							<div class="card-footer">
@@ -103,7 +116,7 @@
 					<div class="col-8">
 						<button id="imageBtn" type="button" class="btn btn-outline-primary">Upload</button>
 						<sf:input id="imageInput" type="file" path="imageFile" accept="image/*" cssClass="d-none" />
-						<img id="preview" src="" alt="preview" class="img-thumbnail d-none mt-3" />
+						<img id="preview" src="${form.imageName ne null ? root.concat('/resources/images/items/').concat(form.imageName) : ''}" alt="preview" class="img-thumbnail ${form.imageName ne null ? '' : 'd-none'} mt-3" />
 					</div>
 				</div>												
 			</div>			

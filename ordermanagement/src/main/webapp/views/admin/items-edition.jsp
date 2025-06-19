@@ -14,7 +14,7 @@
 						class="list-group-item list-group-item-action ${empty selectedCategoryId ? 'active' : ''}">
 						All </a>
 					<c:forEach var="category" items="${categories}">
-						<a href="${root}/admin/item/edit/${category.id()}"
+						<a href="${root}/admin/item/${category.id()}"
 							class="list-group-item list-group-item-action 
 			          ${category.id() == selectedCategoryId ? 'active' : ''}">
 							${category.name()} </a>
@@ -31,11 +31,22 @@
 						<div class="col-lg-4 col-md-6 mb-4">
 							<div class="card h-100 shadow">
 								<div class="card-header">
-									<div class="d-flex justify-content-end">
-										<a href="${root}/admin/item/edit/${item.id()}"
-											class="btn btn-outline-primary btn-sm"> <i
-											class="bi bi-pencil"></i> Edit
-										</a>										
+									<div class="d-flex justify-content-between">
+										<a href="${root}/admin/item/delete/${item.id()}"
+											class="btn-link"
+											onclick="return confirm('This will delete this item. Do you want to continue?')"> 
+											<i class="bi bi-x-octagon-fill text-danger"></i>
+										</a>
+										<div class="d-flex justify-content-end gap-1">
+											<a href="${root}/admin/item/details/${item.id()}"
+												class="btn btn-outline-primary btn-sm"> 
+												<i class="bi bi-info-circle"></i>
+											</a>																		
+											<a href="${root}/admin/item/edit/${item.id()}"
+												class="btn btn-outline-primary btn-sm"> <i
+												class="bi bi-pencil"></i> Edit
+											</a>
+										</div>																			
 									</div>
 								</div>
 								<div class="card-body">

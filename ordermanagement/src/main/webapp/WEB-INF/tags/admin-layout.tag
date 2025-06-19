@@ -25,6 +25,11 @@
 				<i class="bi bi-fork-knife"></i> Restaurant 
 			</a>
 			<ul class="navbar-nav">
+				<li class="nav-item align-items-center">
+					<a href="${root}/admin/item/0" class="nav-link">
+						<i class="bi bi-card-list"></i> Items
+					</a>
+				</li>
 				<li class="nav-item dropdown">
 					<a href="" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown">
 						<i class="bi bi-plus-circle"></i> New

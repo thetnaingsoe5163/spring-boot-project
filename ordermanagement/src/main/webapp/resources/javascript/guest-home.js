@@ -131,3 +131,18 @@ document.addEventListener('DOMContentLoaded', () => {
 	}
 
 })
+
+function loadActualImage(element, parentId, childId) {
+	
+	element.classList.remove('d-none')
+	
+	const parentPlaceholder = document.getElementById(parentId)
+	const placeholder = document.getElementById(childId)
+	
+	
+	if(placeholder) {
+		console.log('here')
+		parentPlaceholder.removeChild(placeholder)
+		
+	}
+}

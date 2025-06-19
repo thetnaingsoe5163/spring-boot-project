@@ -25,7 +25,7 @@
 		<div class="container">
 			<div class="row">
 				<c:forEach items="${items}" var="item">
-					<div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+					<div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-3">
 						<app:item-menu-card 
 							imagePath="${root}/resources/images/items/${item.image() eq null or item.image().isBlank() ? 'default-item.png' : item.image()}"
 							id="${item.id()}" categoryId="${item.categoryId()}" categoryName="${item.categoryName()}" 
