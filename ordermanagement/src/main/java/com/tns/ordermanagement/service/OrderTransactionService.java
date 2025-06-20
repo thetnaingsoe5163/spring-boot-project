@@ -13,6 +13,7 @@ import com.tns.ordermanagement.controller.admin.dto.OrderItemDetailDto;
 import com.tns.ordermanagement.controller.admin.dto.OrderSubmitForm;
 import com.tns.ordermanagement.controller.admin.dto.OrderTrxDto;
 import com.tns.ordermanagement.controller.admin.dto.SaleItemDto;
+import com.tns.ordermanagement.controller.admin.dto.TableDto;
 import com.tns.ordermanagement.controller.commondto.Receipt;
 import com.tns.ordermanagement.controller.guest.dto.OrderForm;
 import com.tns.ordermanagement.controller.guest.dto.OrderHistoryDto;
@@ -213,6 +214,10 @@ public class OrderTransactionService {
 	public List<OrderItemDetailDto> findOrder(UUID id) {
 		var order = safeCall(trxRepo.findById(id), "Order ID", id);
 		return order.getItems().stream().map(OrderItemDetailDto::new).toList();
+	}
+
+	public TableDto convertTableDto(OrderTransaction trx) {
+		return new TableDto(trx.getRestaurantTable());
 	}
 
 }

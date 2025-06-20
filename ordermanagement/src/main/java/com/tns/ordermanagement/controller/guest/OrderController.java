@@ -17,7 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.tns.ordermanagement.controller.guest.dto.OrderForm;
 import com.tns.ordermanagement.controller.guest.dto.OrderItem;
-import com.tns.ordermanagement.service.OrderNotificationService;
+import com.tns.ordermanagement.service.NotificationService;
 import com.tns.ordermanagement.service.OrderTransactionService;
 
 import lombok.RequiredArgsConstructor;
@@ -29,7 +29,7 @@ import lombok.RequiredArgsConstructor;
 public class OrderController {
 	
 	private final OrderTransactionService orderTrxService;	
-	private final OrderNotificationService orderNotiService;
+	private final NotificationService notiService;
 
 	@PostMapping()
 	String submitOrder(
@@ -39,9 +39,12 @@ public class OrderController {
 			RedirectAttributes attr) {		
 		
 		var trx = orderTrxService.submit(form, sessionId, tableNumber);
-		var trxDto = orderTrxService.convertOrderTrxDto(trx); 
-		System.out.println(trxDto);
-		orderNotiService.notifyNewOrder(trxDto);
+		var trxDto = orderTrxService.convertOrderTrxDto(trx);
+		var tableDto = orderTrxService.convertTableDto(trx);
+		
+		notiService.notifyNewOrder(trxDto);
+		notiService.notifyTableStatusChanges(tableDto);
+		
 		form.clear();
 		
 		return "redirect:/%d".formatted(tableNumber);

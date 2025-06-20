@@ -13,6 +13,25 @@ stompClient.connect({}, function(frame) {
 			addInProgressTable(order);
 		}
 	})
+	
+	stompClient.subscribe('/topic/tables', function(message) {
+		const table = JSON.parse(message.body)
+		
+		const element = document.getElementById(table.id)
+		if(element) {
+			if(table.status === 'Free') {
+				element.classList.remove('text-danger')
+				element.classList.remove('text-success')
+
+				element.classList.add('text-success')	
+			} else {
+				element.classList.remove('text-danger')
+				element.classList.remove('text-success')
+				
+				element.classList.add('text-danger')
+			}
+		}
+	})
 })
 
 function addInProgressTable(order) {

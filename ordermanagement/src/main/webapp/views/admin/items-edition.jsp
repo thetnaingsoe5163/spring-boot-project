@@ -10,7 +10,7 @@
 			<div class="col-md-3">
 				<h5>Categories</h5>
 				<ul class="list-group">
-					<a href="${root}/admin/item/edit/0"
+					<a href="${root}/admin/item/0"
 						class="list-group-item list-group-item-action ${empty selectedCategoryId ? 'active' : ''}">
 						All </a>
 					<c:forEach var="category" items="${categories}">
