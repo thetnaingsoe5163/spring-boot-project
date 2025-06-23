@@ -21,44 +21,43 @@
 	
 	<nav class="navbar navbar-expand shadow">
 		<div class="container">
-			<a href="${root}/${tableNumber}" class="navbar-brand">
+			<a href="${root}/guest/${tableNumber}" class="navbar-brand">
 				<i class="bi bi-fork-knife"></i> Restaurant 
 			</a>
-			<div class="d-flex align-items-center">
-				<c:choose>
-					<c:when test="${history eq null or history.items().isEmpty()}">
-						<a id="historyUrl" href="${root}/guest/order/history/${tableNumber}" class="btn position-relative me-4"> 
-							<i class="bi bi-receipt-cutoff"></i> History
-						</a>							
-					</c:when>
-					<c:otherwise>
-						<a id="historyUrl" href="${root}/guest/order/history/${tableNumber}" class="btn position-relative me-4"> 
-							History
-							<i class="bi bi-receipt-cutoff"></i>
-							<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill text-bg-danger">
-			    				${history eq null or history.items().isEmpty() ? '0' : history.items().size()}
-			    				<span class="visually-hidden">Items in the cart</span>
-			  				</span>
-						</a>								
-					</c:otherwise>
-				</c:choose>
-				<a href="${root}/guest/order/details/${tableNumber}" class="btn position-relative me-4">
-					Order 
-					<i class="bi bi-cart3"></i>
-					<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info" id="quantityBadge">
-	    				${orderForm eq null ? '0' : orderForm.getTotalQuantity()}
-	    				<span class="visually-hidden">Items in the cart</span>
-	  				</span>
-				</a>
-				<ul class="navbar-nav">
-					<li class="nav-link">
-						<i class="bi bi-box-arrow-in-right"></i> SignIn
-					</li>
-				</ul>
-			</div>
-		</div>
-	</nav>	
-	
+			
+			<ul class="navbar-nav">
+				<li class="nav-link">
+					<c:choose>
+						<c:when test="${history eq null or history.items().isEmpty()}">
+							<a id="historyUrl" href="${root}/guest/order/history/${tableNumber}" class="btn position-relative me-4"> 
+								<i class="bi bi-receipt-cutoff"></i> History
+							</a>							
+						</c:when>
+						<c:otherwise>
+							<a id="historyUrl" href="${root}/guest/order/history/${tableNumber}" class="btn position-relative me-4"> 
+								History
+								<i class="bi bi-receipt-cutoff"></i>
+								<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill text-bg-danger">
+				    				${history eq null or history.items().isEmpty() ? '0' : history.items().size()}
+				    				<span class="visually-hidden">Items in the cart</span>
+				  				</span>
+							</a>								
+						</c:otherwise>
+					</c:choose>
+				</li>
+				<li class="nav-link">
+					<a href="${root}/guest/order/details/${tableNumber}" class="btn position-relative me-4">
+						Order 
+						<i class="bi bi-cart3"></i>
+						<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info" id="quantityBadge">
+		    				${orderForm eq null ? '0' : orderForm.getTotalQuantity()}
+		    				<span class="visually-hidden">Items in the cart</span>
+		  				</span>
+					</a>						
+				</li>
+			</ul>
+		</div>	
+	</nav>
 	
 	<div>
 		<jsp:doBody></jsp:doBody>

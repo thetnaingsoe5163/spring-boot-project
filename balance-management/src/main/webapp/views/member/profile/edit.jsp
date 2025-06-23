@@ -14,18 +14,18 @@
 			<img src="${profileEditForm.profileImage eq null ?
 			 '%s/resources/photos/%s'.formatted(root, 'default-profile.png'): '%s/resources/photos/%s'.formatted(root, profileEditForm.profileImage)}" 
 				class="img-fluid" alt="profile-pic" />
-			<form action="${root}/member/profile/photo" method="post" enctype="multipart/form-data"
+			<sf:form action="${root}/member/profile/photo" method="post" enctype="multipart/form-data"
 				id="profilePhotoForm" class="mt-3">
 				<sec:csrfInput/>
 				<input type="file" name="profileImage" id="profilePhotoInput" class="d-none" />
 				<button type="button" id="profilePhotoButton" class="btn btn-primary w-100">
 					<i class="bi bi-camera"></i> Change Profile Picture
 				</button>
-			</form>
+			</sf:form>
 		</div>
 		
 		<div class="col">
-			<sf:form method="post" modelAttribute="profileEditForm">
+			<sf:form id="profileEditForm" method="post" modelAttribute="profileEditForm">
 				<div class="row mb-3">
 					<app:form-group label="Name" cssClass="col-8">
 						<sf:input type="text" path="name" placeholder="Enter Name" class="form-control" />
@@ -115,7 +115,7 @@
 					</app:form-group>
 				</div>
 				
-				<button type="submit" class="btn btn-danger">
+				<button type="submit" class="btn btn-danger" id="profileEditBtn">
 					<i class="bi bi-save"></i> Save Profile
 				</button>
 			</sf:form>

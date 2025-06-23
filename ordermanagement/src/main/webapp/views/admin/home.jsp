@@ -12,7 +12,8 @@
 				<div class="row">
 					<c:forEach items="${tables}" var="table">
 						<div class="col-auto mt-3">
-							<div id="${table.id()}" class="d-flex flex-column align-items-center text-${table.status() eq 'Free' ? 'success' : 'danger'}">
+							<div id="${table.id()}"
+								class="d-flex flex-column align-items-center text-${table.status() eq 'Free' ? 'success' : 'danger'}">
 								${table.tableNumber()} <i class="fas fa-chair"></i>
 							</div>
 						</div>

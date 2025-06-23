@@ -58,7 +58,7 @@
 			<div class="card">
 				<div class="card-body">
 					<h5 class="card-title">
-						<i class="bi bi-people"></i> Member Registrations
+						<i class="bi bi-people"></i> Member Login Status
 					</h5>
 					
 					<div id="adminChart"></div>

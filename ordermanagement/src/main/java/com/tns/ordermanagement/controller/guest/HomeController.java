@@ -13,7 +13,7 @@ import lombok.RequiredArgsConstructor;
 
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/guest")
 @RequiredArgsConstructor
 public class HomeController {
 	

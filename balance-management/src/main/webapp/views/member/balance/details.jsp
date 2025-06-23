@@ -27,8 +27,8 @@
 					<tr> 
 						<th>No.</th>
 						<th>Item Name</th>
-						<th class="text-end">Price</th>
 						<th class="text-end">Quantity</th>
+						<th class="text-end">Price</th>
 						<th class="text-end">Total</th>
 					</tr>
 				</thead>

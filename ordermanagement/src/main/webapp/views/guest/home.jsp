@@ -7,13 +7,13 @@
 	<div class="container">
 		<ul class="nav nav-underline justify-content-center">
 			<li class="nav-item">
-				<a href="${root}/${tableNumber}" data-uri="${root}/${tableNumber}" class="nav-link text-dark category-link">
+				<a href="${root}/guest/${tableNumber}" data-uri="${root}/${tableNumber}" class="nav-link text-dark category-link">
 					All
 				</a>			
 			</li>
 			<c:forEach items="${categories}" var="category">
 				<li class="nav-item">
-					<a href="${root}/items/${tableNumber}/${category.id()}" data-uri="${root}/items/${category.id()}" class="nav-link text-dark category-link">
+					<a href="${root}/guest/items/${tableNumber}/${category.id()}" data-uri="${root}/guest/items/${category.id()}" class="nav-link text-dark category-link">
 						${category.name()}
 					</a>									
 				</li>

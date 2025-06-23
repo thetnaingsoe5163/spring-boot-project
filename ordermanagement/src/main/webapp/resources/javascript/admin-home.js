@@ -48,10 +48,10 @@ function addInProgressTable(order) {
 		<div class="d-flex gap-3 justify-content-end" role="group">
 			<a href="${contextPath}/admin/order/pay/${order.id}" class="btn btn-outline-dark">
 				Pay Bill
-			</a>		
-			<a href="${contextPath}/admin/order/details/${order.id}" class="btn btn-outline-info">
-				<i class="bi bi-info-circle-fill"></i> Details
-			</a>
+			</a>	
+			<a href="${contextPath}/admin/order/details/${order.id}" class="btn btn-outline-warning"> 
+				<i class="bi bi-wrench"></i> Modify
+			</a>	
 			<a href="${contextPath}/admin/order/immediate-approve/${order.id}" class="btn btn-outline-success">
 				<i class="bi bi-check2"></i> Approve
 			</a>		
