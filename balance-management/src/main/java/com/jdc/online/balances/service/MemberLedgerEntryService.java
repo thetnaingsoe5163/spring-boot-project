@@ -70,7 +70,7 @@ public class MemberLedgerEntryService {
 		return entryForm;
 	}
 	
-	@Transactional
+	@Transactional(timeout = 300)
 	public String save(LedgerEntryForm form) {
 		var username = SecurityContextHolder.getContext().getAuthentication().getName();
 		var member = safeCall(memberRepo.findOneByAccountUserName(username), "Member", "username", username);
@@ -201,6 +201,9 @@ public class MemberLedgerEntryService {
 		entry.setAmount(amount);
 		entry.setLastAmount(lastAmount);
 		
+		System.out.println("Entry new amount: " + amount);
+		System.out.println("Entry new last amount: " + lastAmount);
+		
 		var balance = switch(entry.getLedger().getType()) {
 		case Incomes -> entry.getLastAmount().add(amount);
 		case Expenses -> entry.getLastAmount().subtract(amount);
@@ -208,9 +211,16 @@ public class MemberLedgerEntryService {
 		
 		member.getActivity().setBalance(balance);
 		
+		System.out.println("Balance becomes: " + balance);
+		
 		var entries = entryRepo.findRemainingEntries(member.getId(), entry.getId().getIssuedDate(), entry.getId().getSeqNumber());
 		for(var remainEntry : entries) {
+			System.out.println("\nRemain entry: " + remainEntry.getParticular());
+			System.out.println("[Before] Remain entry last amount: " + remainEntry.getLastAmount());
+			
 			remainEntry.setLastAmount(member.getActivity().getBalance());
+			
+			System.out.println("[After] Remain entry last amount: " + remainEntry.getLastAmount());
 			
 			var remainAmount = remainEntry.getItems().stream()
 					.map(a -> a.getUnitPrice().multiply(BigDecimal.valueOf(a.getQuantity())))
@@ -222,7 +232,11 @@ public class MemberLedgerEntryService {
 			case Expenses -> remainEntry.getLastAmount().subtract(remainAmount);
 			};
 			
+			System.out.println("Remain Balance: " + remainBalance);
+			
+			System.out.println("[Before] Balance: " + member.getActivity().getBalance());
 			member.getActivity().setBalance(remainBalance);
+			System.out.println("[After] Balance: " + member.getActivity().getBalance());
 				
 		}
 		

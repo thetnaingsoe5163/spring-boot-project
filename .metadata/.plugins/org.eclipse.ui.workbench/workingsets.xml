@@ -18,6 +18,11 @@
 <item TAG_MARKER_ID="2538" TAG_RESOURCE_FACTORY_ID="org.eclipse.ui.internal.model.ResourceFactory" factoryID="org.eclipse.debug.ui.elementFactory.breakpoints" path="/balance-management/src/main/java/com/jdc/online/balances/controller/member/MemberSettingProfileController.java" type="1"/>
 <item TAG_MARKER_ID="2539" TAG_RESOURCE_FACTORY_ID="org.eclipse.ui.internal.model.ResourceFactory" factoryID="org.eclipse.debug.ui.elementFactory.breakpoints" path="/balance-management/src/main/java/com/jdc/online/balances/service/MemberProfileService.java" type="1"/>
 <item TAG_MARKER_ID="2540" TAG_RESOURCE_FACTORY_ID="org.eclipse.ui.internal.model.ResourceFactory" factoryID="org.eclipse.debug.ui.elementFactory.breakpoints" path="/balance-management/src/main/java/com/jdc/online/balances/utils/EntityOperation.java" type="1"/>
+<item TAG_MARKER_ID="2545" TAG_RESOURCE_FACTORY_ID="org.eclipse.ui.internal.model.ResourceFactory" factoryID="org.eclipse.debug.ui.elementFactory.breakpoints" path="/balance-management/src/main/java/com/jdc/online/balances/security/AuditorAwareBean.java" type="1"/>
+<item TAG_MARKER_ID="2546" TAG_RESOURCE_FACTORY_ID="org.eclipse.ui.internal.model.ResourceFactory" factoryID="org.eclipse.debug.ui.elementFactory.breakpoints" path="/" type="8"/>
+<item TAG_MARKER_ID="2547" TAG_RESOURCE_FACTORY_ID="org.eclipse.ui.internal.model.ResourceFactory" factoryID="org.eclipse.debug.ui.elementFactory.breakpoints" path="/" type="8"/>
+<item TAG_MARKER_ID="2548" TAG_RESOURCE_FACTORY_ID="org.eclipse.ui.internal.model.ResourceFactory" factoryID="org.eclipse.debug.ui.elementFactory.breakpoints" path="/balance-management/src/main/java/com/jdc/online/balances/service/LedgerEntryIdGenerator.java" type="1"/>
+<item TAG_MARKER_ID="2578" TAG_RESOURCE_FACTORY_ID="org.eclipse.ui.internal.model.ResourceFactory" factoryID="org.eclipse.debug.ui.elementFactory.breakpoints" path="/balance-management/src/main/java/com/jdc/online/balances/service/MemberLedgerEntryService.java" type="1"/>
 </workingSet>
 <workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1747052171753_2" label="Window Working Set" name="Aggregate for window 1747052171753"/>
 </workingSetManager>
