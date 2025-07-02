@@ -53,7 +53,7 @@ public class MemberSettingProfileController {
 	
 	@PostMapping("photo")
 	String uploadPhoto(
-			@RequestParam(name = "profileImage") MultipartFile file,
+			@RequestParam(name = "image") MultipartFile file,
 			HttpServletRequest request) {
 		
 		var username = SecurityContextHolder.getContext().getAuthentication().getName();

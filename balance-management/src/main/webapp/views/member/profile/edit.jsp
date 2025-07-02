@@ -14,14 +14,14 @@
 			<img src="${profileEditForm.profileImage eq null ?
 			 '%s/resources/photos/%s'.formatted(root, 'default-profile.png'): '%s/resources/photos/%s'.formatted(root, profileEditForm.profileImage)}" 
 				class="img-fluid" alt="profile-pic" />
-			<sf:form action="${root}/member/profile/photo" method="post" enctype="multipart/form-data"
+			<form action="${root}/member/profile/photo" method="post" enctype="multipart/form-data"
 				id="profilePhotoForm" class="mt-3">
 				<sec:csrfInput/>
-				<input type="file" name="profileImage" id="profilePhotoInput" class="d-none" />
+				<input type="file" name="image" id="profilePhotoInput" class="d-none" />
 				<button type="button" id="profilePhotoButton" class="btn btn-primary w-100">
 					<i class="bi bi-camera"></i> Change Profile Picture
 				</button>
-			</sf:form>
+			</form>
 		</div>
 		
 		<div class="col">
@@ -121,8 +121,8 @@
 			</sf:form>
 		</div>
 	</div>
-	
+	 
 	
 	<script src="${root}/resources/js/profile-edit.js"></script>
-	<<script src="${root}/resources/js/member-location.js"></script>
+	<script src="${root}/resources/js/member-location.js"></script>
 </app:layout-member>
