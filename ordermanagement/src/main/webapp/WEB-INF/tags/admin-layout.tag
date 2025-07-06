@@ -49,9 +49,11 @@
 					</ul>
 				</li>
 				<li class="nav-item align-items-center">
-					<a href="" class="nav-link">
-						logout
-					</a>
+					<sf:form action="${root}/signout" method="post" id="logoutForm">
+						<a href="#" class="nav-link" id="logoutLink">
+							logout
+						</a>
+					</sf:form>
 				</li>
 			</ul>
 		</div>

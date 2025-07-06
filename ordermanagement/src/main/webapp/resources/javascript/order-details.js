@@ -24,6 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		for (let i = 0; i < trs.length; i++) {
 
 			const deleted = document.getElementById(`deleted${i}`)
+			const deleteBtn = document.getElementById(`deleteBtn${i}`)
 			const hiddenQuantity = document.getElementById(`hiddenQuantity${i}`)
 
 			const spanQuantity = document.getElementById(`spanQuantity${i}`)
@@ -31,10 +32,10 @@ document.addEventListener('DOMContentLoaded', () => {
 			const totalPrice = document.getElementById(`totalPrice${i}`)
 			const minusBtn = document.getElementById(`minusBtn${i}`)
 			const addBtn = document.getElementById(`addBtn${i}`)
-			const tr = document.getElementById(`${i}`)
-
-			if (deleted && hiddenQuantity && spanQuantity && minusBtn && addBtn && unitPrice && totalPrice) {
-
+			const tr = document.getElementById(`${i}`)			
+			
+			if (deleteBtn && deleted && hiddenQuantity && spanQuantity && minusBtn && addBtn && unitPrice && totalPrice) {
+				
 				if (parseInt(spanQuantity) >= 1) {
 					deleted.value = 'false'
 				}
@@ -74,6 +75,14 @@ document.addEventListener('DOMContentLoaded', () => {
 					totalPrice.innerText = parseInt(unitPrice.innerText) * parseInt(spanQuantity.innerText)
 					setAllTotalPrice()
 				})
+				
+				deleteBtn.addEventListener('click', () => {
+					deleted.value = 'true'
+					tr.classList.add('d-none')
+					form.action = form.dataset['remove']
+					form.submit()
+				})
+				
 			}
 
 		}

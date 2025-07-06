@@ -52,7 +52,9 @@
 							</td>
 							<td class="text-end totalPrice" id="totalPrice${status.index}"></td>
 							<td class="text-end">
-								<i class="bi bi-trash3 text-danger"></i>
+								<button class="btn" type="button" id="deleteBtn${status.index}">
+									<i class="bi bi-trash3 text-danger"></i>
+								</button>								
 							</td>
 						</tr>					
 					</c:forEach>

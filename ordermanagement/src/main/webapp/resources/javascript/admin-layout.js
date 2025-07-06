@@ -22,4 +22,14 @@ document.addEventListener('DOMContentLoaded', () => {
 		addCategoryModal.show()
 		
 	}
+	
+	const logoutForm = document.getElementById('logoutForm')
+	const logoutLink = document.getElementById('logoutLink')
+	
+	if(logoutForm && logoutLink) {
+		logoutLink.addEventListener('click', (e) => {
+			e.preventDefault()
+			logoutForm.submit()
+		})
+	}
 })

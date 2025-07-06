@@ -47,7 +47,7 @@ public class OrderController {
 		
 		form.clear();
 		
-		return "redirect:/%d".formatted(tableNumber);
+		return "redirect:/guest/%d".formatted(tableNumber);
 	}
 
 	@PostMapping("add")
@@ -58,10 +58,13 @@ public class OrderController {
 	}
 
 	@PostMapping("remove")
-	String removeItem(@ModelAttribute("orderForm") OrderForm form, ModelMap model) {
+	String removeItem(
+			@ModelAttribute("orderForm") OrderForm form,
+			@RequestParam int tableNumber,
+			ModelMap model) {
 		var list = new ArrayList<>(form.getItems().stream().filter(i -> !i.isDeleted()).toList());
 		form.setItems(list);
-		return "redirect:/guest/order/details";
+		return "redirect:/guest/order/details/%d".formatted(tableNumber);
 	}
 
 	@GetMapping("details/{tableNumber}")
@@ -70,6 +73,10 @@ public class OrderController {
 			@ModelAttribute("orderForm") OrderForm form, ModelMap model) {
 		model.put("tableNumber", tableNumber);
 		model.put("form", form);
+		
+		if(form.getItems().isEmpty()) {
+			return "redirect:/guest/%d".formatted(tableNumber);
+		}
 		return "guest/order-details";
 	}
 
@@ -81,7 +88,7 @@ public class OrderController {
 		
 		var orderHistory = orderTrxService.findActiveOrderHistory(id);
 		if(orderHistory == null) {
-			return "redirect:/%d".formatted(tableNumber);
+			return "redirect:/guest/%d".formatted(tableNumber);
 		}
 		model.addAttribute("history", orderHistory);
 		return "guest/history";

@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="app" tagdir="/WEB-INF/tags/" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <app:guest-layout>		
 	<div class="container">
@@ -92,6 +93,7 @@
 					</div>
 										
 					<form action="${root}/guest/order/add" method="post" id="modalForm" class="mt-3">
+						<sec:csrfInput/>
 						<input type="hidden" name="itemId" id="id"/>
 						<input type="hidden" name="categoryId" id="categoryId" />
 						<input type="hidden" name="quantity" id="hiddenQuantity" value="1" />

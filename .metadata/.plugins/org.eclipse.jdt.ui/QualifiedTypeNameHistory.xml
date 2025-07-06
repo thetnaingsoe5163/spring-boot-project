@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="java.util.ArrayList"/>
-    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestParam"/>
     <fullyQualifiedTypeName name="com.tns.ordermanagement.controller.admin.dto.AddItemForm"/>
     <fullyQualifiedTypeName name="com.tns.ordermanagement.model.entity.Item"/>
     <fullyQualifiedTypeName name="lombok.AllArgsConstructor"/>
@@ -60,4 +58,6 @@
     <fullyQualifiedTypeName name="org.springframework.security.web.authentication.AuthenticationSuccessHandler"/>
     <fullyQualifiedTypeName name="com.tns.ordermanagement.security.LoginSuccessHandler"/>
     <fullyQualifiedTypeName name="com.tns.ordermanagement.model.entity.constant.Role"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PostMapping"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestParam"/>
 </qualifiedTypeNameHistroy>

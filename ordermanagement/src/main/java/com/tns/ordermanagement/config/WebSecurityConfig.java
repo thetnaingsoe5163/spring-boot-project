@@ -27,9 +27,13 @@ public class WebSecurityConfig {
 		
 		http.formLogin(form -> {
 			form.loginPage("/signin");
-			
 			form.successHandler(new LoginSuccessHandler());
 			
+		});
+		
+		http.logout(form -> {
+			form.logoutUrl("/signout");
+			form.logoutSuccessUrl("/");
 		});
 		
 		return http.build();

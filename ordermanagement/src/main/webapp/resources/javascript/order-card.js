@@ -15,8 +15,8 @@ document.addEventListener('DOMContentLoaded', () => {
 		minusBtn.addEventListener('click', (e) => {
 			e.preventDefault()
 			let q = parseInt(spanQuantity.innerText) - 1
-			if(q < 0) {
-				q = 0 
+			if(q < 1) {
+				q = 1
 			}
 			spanQuantity.innerText = q
 			hiddenQuantity.value = q
